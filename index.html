@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quadratische Funktionen &amp; Gleichungen – Klasse 9</title>
+<style>
+  :root{
+    --bg:#f7f9fc; --card:#ffffff; --ink:#1a2332; --muted:#5a6b80;
+    --accent:#0b7a9e; --accent-dark:#074d65; --accent-soft:#e6f3f8;
+    --line:#d7dde5; --ok:#2c7a3e; --ok-soft:#e7f5ec;
+    --warn:#7a5900;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{
+    background:var(--bg);color:var(--ink);min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+  }
+  /* ── Hero ── */
+  .hero{
+    background:linear-gradient(135deg,var(--accent-dark) 0%,#1a7fb5 60%,#2a9fd4 100%);
+    color:#fff;padding:60px 24px 50px;text-align:center;
+  }
+  .hero .label{
+    display:inline-block;background:rgba(255,255,255,.18);
+    font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+    padding:5px 16px;border-radius:999px;margin-bottom:18px;
+  }
+  .hero h1{font-size:clamp(26px,5vw,42px);font-weight:800;line-height:1.2;margin-bottom:14px;}
+  .hero .sub{
+    font-size:clamp(14px,2.5vw,17px);opacity:.88;max-width:560px;
+    margin:0 auto 28px;
+  }
+  .hero .badges{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+  .hero .badge{
+    background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+    color:#fff;font-size:12.5px;font-weight:600;padding:4px 14px;border-radius:999px;
+  }
+  /* ── Wrapper ── */
+  .wrap{max-width:900px;margin:0 auto;padding:0 20px;}
+  /* ── Cards ── */
+  .cards{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    margin:48px auto;max-width:860px;padding:0 20px;
+  }
+  @media(max-width:620px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:28px 26px 24px;box-shadow:0 4px 18px rgba(0,0,0,.07);
+    display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s;
+    text-decoration:none;color:inherit;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.12);}
+  .card-icon{
+    width:52px;height:52px;border-radius:14px;display:flex;
+    align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;
+  }
+  .card-icon.lernpfad{background:var(--accent-soft);}
+  .card-icon.crashkurs{background:var(--ok-soft);}
+  .card h2{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+  .card p{font-size:14.5px;color:var(--muted);flex:1;margin-bottom:18px;line-height:1.55;}
+  .card-meta{
+    display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;
+  }
+  .tag{
+    font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;
+  }
+  .tag.blue{background:var(--accent-soft);color:var(--accent-dark);}
+  .tag.green{background:var(--ok-soft);color:var(--ok);}
+  .tag.yellow{background:#fdf2e4;color:var(--warn);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 20px;border-radius:10px;font-size:14.5px;font-weight:700;
+    text-decoration:none;transition:background .15s, color .15s;
+    align-self:flex-start;
+  }
+  .btn.primary{background:var(--accent);color:#fff;}
+  .btn.primary:hover{background:var(--accent-dark);}
+  .btn.secondary{background:var(--ok);color:#fff;}
+  .btn.secondary:hover{background:#1e5c2e;}
+  .btn svg{width:16px;height:16px;}
+  /* ── Info section ── */
+  .info{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:24px 28px;margin:0 20px 48px;max-width:860px;
+    margin-left:auto;margin-right:auto;
+  }
+  .info h3{font-size:16px;font-weight:700;color:var(--accent-dark);margin-bottom:14px;}
+  .topics{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  @media(max-width:500px){.topics{grid-template-columns:1fr;}}
+  .topic-item{
+    display:flex;align-items:center;gap:8px;
+    font-size:13.5px;color:var(--ink);padding:5px 0;
+  }
+  .topic-item::before{
+    content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--accent);flex-shrink:0;
+  }
+  /* ── Footer ── */
+  footer{
+    text-align:center;color:var(--muted);font-size:12.5px;
+    padding:28px 20px;border-top:1px solid var(--line);
+  }
+  footer a{color:var(--accent);text-decoration:none;}
+  footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="label">Klasse 9 · Gymnasium</div>
+  <h1>Quadratische Funktionen<br>&amp; Gleichungen</h1>
+  <p class="sub">Selbstlernmaterialien für Kapitel 2.1–2.9 · Mit Theorie, Beispielen und gestuften Aufgaben</p>
+  <div class="badges">
+    <span class="badge">📐 Kapitel 2.1–2.9</span>
+    <span class="badge">🎓 Gymnasium</span>
+    <span class="badge">⚡ KaTeX-Formeln</span>
+    <span class="badge">📱 Mobil nutzbar</span>
+  </div>
+</div>
+
+<div class="cards">
+
+  <!-- Lernpfad -->
+  <a class="card" href="lernpfad.html">
+    <div class="card-icon lernpfad">📘</div>
+    <h2>Lernpfad</h2>
+    <p>Vollständiges Selbstlernmaterial mit tiefer Theorie, Analogien, Musterbeispielen und gestuften Aufgaben (Tipp → Lösungsweg → Ergebnis) für alle 9 Kapitel.</p>
+    <div class="card-meta">
+      <span class="tag blue">9 Kapitel</span>
+      <span class="tag blue">Musterbeispiele</span>
+      <span class="tag blue">3-stufige Lösungen</span>
+    </div>
+    <span class="btn primary">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/></svg>
+      Lernpfad öffnen
+    </span>
+  </a>
+
+  <!-- Crashkurs -->
+  <a class="card" href="crashkurs.html">
+    <div class="card-icon crashkurs">⚡</div>
+    <h2>Crashkurs</h2>
+    <p>Kompakter Crashkurs zur Klausurvorbereitung – Formelspickzettel, Standardverfahren als Ablaufboxen, aufklappbare Tipps und Lösungsschritte auf einen Blick.</p>
+    <div class="card-meta">
+      <span class="tag green">Klausurvorbereitung</span>
+      <span class="tag green">Formelspickzettel</span>
+      <span class="tag green">90 min · 80 BE</span>
+    </div>
+    <span class="btn secondary">
+      <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+      Crashkurs öffnen
+    </span>
+  </a>
+
+</div>
+
+<!-- Themenübersicht -->
+<div class="info">
+  <h3>Themenübersicht — Kapitel 2.1 bis 2.9</h3>
+  <div class="topics">
+    <div class="topic-item">2.1 · Die Normalparabel</div>
+    <div class="topic-item">2.2 · Strecken und Stauchen</div>
+    <div class="topic-item">2.3 · Verschieben in y-Richtung</div>
+    <div class="topic-item">2.4 · Verschieben in x-Richtung</div>
+    <div class="topic-item">2.5 · Die Scheitelpunktform</div>
+    <div class="topic-item">2.6 · Allgemeine &amp; faktorisierte Form</div>
+    <div class="topic-item">2.7 · Einfache quadratische Gleichungen</div>
+    <div class="topic-item">2.8 · Quadratische Ergänzung &amp; pq-Formel</div>
+    <div class="topic-item">2.9 · Schnittpunkte &amp; grafisches Lösen</div>
+  </div>
+</div>
+
+<footer>
+  Erstellt mit <a href="https://claude.ai" target="_blank">Claude (Anthropic)</a> · April 2026 ·
+  Quadratische Funktionen &amp; Gleichungen · Klasse 9 Gymnasium
+</footer>
+
+</body>
+</html>

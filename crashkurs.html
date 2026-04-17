@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crashkurs: Quadratische Funktionen &amp; Gleichungen – Klasse 9</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+  :root{
+    --bg:#f7f9fc; --card:#ffffff; --ink:#1a2332; --muted:#5a6b80;
+    --accent:#0b7a9e; --accent-dark:#074d65; --accent-soft:#e6f3f8;
+    --warn:#b4531a; --warn-soft:#fef0e3;
+    --ok:#2c7a3e; --ok-soft:#e7f5ec;
+    --line:#d7dde5; --rule-bg:#f3f6fa;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;font-size:16px;}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 20px 80px;}
+  header.doc{background:linear-gradient(135deg,var(--accent-dark),var(--accent));color:#fff;
+    padding:28px 28px 22px;border-radius:14px;margin-bottom:22px;box-shadow:0 6px 20px rgba(7,77,101,.18);}
+  header.doc h1{margin:0 0 6px;font-size:28px;font-weight:700;letter-spacing:.2px;}
+  header.doc .sub{opacity:.92;font-size:15px;}
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;margin-bottom:22px;}
+  nav.toc h2{margin:0 0 10px;font-size:17px;color:var(--accent-dark);}
+  nav.toc ol{margin:0;padding-left:22px;columns:2;column-gap:28px;}
+  nav.toc li{margin:3px 0;break-inside:avoid;}
+  nav.toc a{color:var(--ink);text-decoration:none;}
+  nav.toc a:hover{color:var(--accent);text-decoration:underline;}
+  @media(max-width:640px){nav.toc ol{columns:1;}}
+  section.topic{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:22px 24px;margin-bottom:22px;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+  section.topic h2{margin:0 0 4px;color:var(--accent-dark);font-size:22px;}
+  section.topic .kicker{display:inline-block;background:var(--accent-soft);color:var(--accent-dark);
+    font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;margin-bottom:10px;letter-spacing:.3px;text-transform:uppercase;}
+  .lead{color:var(--muted);font-size:15.5px;margin:0 0 14px;}
+  h3{font-size:1.12em;color:var(--accent-dark);margin:20px 0 8px}
+  h4{font-size:.98em;color:var(--ink);margin:14px 0 6px}
+  p{margin:6px 0}
+  .cheatsheet{background:var(--rule-bg);border-left:4px solid var(--accent);border-radius:6px;
+    padding:14px 18px;margin:14px 0;}
+  .cheatsheet h4{margin:0 0 8px;font-size:15px;color:var(--accent-dark);}
+  .cheatsheet h4:not(:first-child){margin-top:12px;}
+  .rule{margin:6px 0;}
+  .rule .rule-name{font-weight:600;color:var(--ink);}
+  .procedure{border:1.5px solid var(--accent);border-radius:8px;padding:14px 16px;margin:14px 0;
+    background:#fff;}
+  .procedure .title{font-weight:700;color:var(--accent-dark);margin-bottom:6px;font-size:15.5px;}
+  .procedure h4{color:var(--accent-dark);margin:0 0 10px;font-size:15.5px;font-weight:700;}
+  .procedure ol{margin:4px 0 0 18px;padding:0;}
+  .procedure ol li{margin:4px 0;}
+  .step-row{margin:10px 0 2px;}
+  .step-label{display:inline-block;background:var(--accent-dark);color:#fff;font-weight:700;
+    border-radius:50%;width:22px;height:22px;line-height:22px;text-align:center;font-size:12px;
+    margin-right:6px;vertical-align:middle;}
+  .step-title{font-weight:600;}
+  .step-work{margin:4px 0 2px 28px;}
+  .note{margin:2px 0 2px 28px;font-size:14px;color:var(--muted);}
+  .note.warn{color:var(--warn);background:var(--warn-soft);padding:4px 10px;border-radius:4px;
+    border-left:3px solid var(--warn);margin-top:4px;}
+  .task{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:14px 0;
+    background:#fcfdfe;}
+  .task .tnum{display:inline-block;background:var(--accent);color:#fff;font-weight:700;
+    border-radius:999px;padding:2px 12px;font-size:13px;margin-right:8px;}
+  .task .ttitle{font-weight:600;}
+  .task .q{margin:8px 0 10px;}
+  .task h4{margin:0 0 8px;display:flex;align-items:center;gap:8px}
+  .task details{margin:6px 0;border-radius:6px;overflow:hidden;}
+  .task details summary{cursor:pointer;padding:7px 12px;font-weight:600;font-size:14px;
+    user-select:none;list-style:none;outline:none;transition:background .15s;}
+  .task details summary::-webkit-details-marker{display:none;}
+  .task details summary::before{content:"▶ ";font-size:11px;margin-right:2px;
+    display:inline-block;transition:transform .15s;}
+  .task details[open] summary::before{transform:rotate(90deg);}
+  .task details.hint summary{background:#fff7e0;color:#7a5900;}
+  .task details.hint[open] summary{background:#ffefc2;}
+  .task details.hint > div,.task details.hint > p{background:#fffaec;padding:10px 14px;border-top:1px solid #f0e3ba;}
+  .task details.steps summary{background:var(--accent-soft);color:var(--accent-dark);}
+  .task details.steps[open] summary{background:#d0e7f0;}
+  .task details.steps > div,.task details.steps > p{background:#f4fafd;padding:10px 14px;border-top:1px solid #cfe1ea;}
+  .task details.result summary{background:var(--ok-soft);color:var(--ok);}
+  .task details.result[open] summary{background:#d1ecd8;}
+  .task details.result > div,.task details.result > p{background:#f2faf5;padding:10px 14px;border-top:1px solid #c7e2cf;}
+  .badge{display:inline-block;background:var(--accent-soft);color:var(--accent-dark);
+    font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px;letter-spacing:.3px;}
+  .badge.be{background:var(--accent-soft);color:var(--accent-dark);}
+  .badge.afb{background:#eaf0f7;color:#355480;}
+  .tip-box{background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1px solid #e6cf74;
+    border-radius:10px;padding:14px 18px;margin:14px 0;}
+  .tip-box h4{margin:0 0 6px;color:#7a5900;font-size:16px;}
+  .example{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:12px 16px;margin:8px 0}
+  .merke{background:#fdf2e4;border:1px solid #e6cf74;border-left:4px solid #e6cf74;
+    border-radius:6px;padding:10px 14px;margin:12px 0;font-size:14.5px;}
+  .merke strong{color:#7a5900;}
+  .hinweis{background:#e9f3fa;border-left:4px solid var(--accent);border-radius:6px;
+    padding:10px 14px;margin:12px 0;font-size:14.5px;}
+  .hinweis strong{color:var(--accent-dark);}
+  footer.doc{text-align:center;color:var(--muted);font-size:13px;margin-top:30px;padding:20px;}
+  @media print{body{max-width:100%;padding:10px}.wrap{padding:10px}details{open:true}details>*{display:block!important}summary{font-weight:700}header.doc{-webkit-print-color-adjust:exact;print-color-adjust:exact}.cheatsheet,.procedure,.tip-box{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>Crashkurs: Quadratische Funktionen &amp; Gleichungen</h1>
+  <div class="sub">Klasse 9 Gymnasium | Rahmenplan MV | Vorbereitung auf die Klassenarbeit (90 min, 80 BE)</div>
+</header>
+
+<nav class="toc">
+  <h2>Inhaltsverzeichnis</h2>
+  <ol>
+    <li><a href="#cheat">Formel-Spickzettel</a></li>
+    <li><a href="#formen">Die drei Darstellungsformen</a></li>
+    <li><a href="#qe">Quadratische Ergänzung (Standardverfahren)</a></li>
+    <li><a href="#parameter">Parametereinfluss &amp; Transformation</a></li>
+    <li><a href="#gleichungen">Quadratische Gleichungen lösen</a></li>
+    <li><a href="#vieta">Satz von Vieta</a></li>
+    <li><a href="#schnitt">Schnittpunkte &amp; Lagebeziehungen</a></li>
+    <li><a href="#anwendung">Anwendungsaufgaben (Modellierung)</a></li>
+    <li><a href="#uebung">Gemischte Übungsaufgaben</a></li>
+    <li><a href="#tipps">Last-Minute-Tipps</a></li>
+  </ol>
+</nav>
+
+<section class="topic" id="cheat">
+<span class="kicker">Grundlagen</span>
+<h2>1. Formel-Spickzettel</h2>
+<p class="lead">Alle wichtigen Formeln auf einen Blick – das musst du in der Klausur parat haben.</p>
+
+<div class="cheatsheet">
+  <h4>Darstellungsformen</h4>
+
+  <div class="rule"><span class="rule-name">Normalform:</span> $f(x) = x^2 + px + q$ &nbsp;bzw.&nbsp; $f(x)=ax^2+bx+c$</div>
+  <div class="rule"><span class="rule-name">Scheitelform:</span> $f(x) = a(x - d)^2 + e$ &emsp; Scheitelpunkt $S(d\,|\,e)$</div>
+  <div class="rule"><span class="rule-name">Linearfaktorform:</span> $f(x) = a(x - x_1)(x - x_2)$ &emsp; Nullstellen $x_1, x_2$</div>
+
+  <h4>Wichtige Formeln</h4>
+
+  <div class="rule"><span class="rule-name">$p$-$q$-Formel:</span> $x_{1/2} = -\dfrac{p}{2} \pm \sqrt{\left(\dfrac{p}{2}\right)^2 - q}$</div>
+  <div class="rule"><span class="rule-name">Diskriminante:</span> $D = \left(\dfrac{p}{2}\right)^2 - q$ &emsp; $D>0$: zwei Lösungen &emsp; $D=0$: eine Lösung &emsp; $D<0$: keine reelle Lösung</div>
+  <div class="rule"><span class="rule-name">Satz von Vieta:</span> $x_1 + x_2 = -p$ &emsp; und &emsp; $x_1 \cdot x_2 = q$</div>
+  <div class="rule"><span class="rule-name">Scheitelpunkt aus Normalform:</span> $x_S = -\dfrac{p}{2}$, &emsp; $y_S = f(x_S) = q - \dfrac{p^2}{4}$</div>
+
+  <h4>Eigenschaften der Parabel</h4>
+
+  <div class="rule"><span class="rule-name">Öffnung:</span> $a > 0$: nach oben &emsp; $a < 0$: nach unten</div>
+  <div class="rule"><span class="rule-name">Breite:</span> $|a| > 1$: schmaler als Normalparabel &emsp; $|a| < 1$: breiter</div>
+  <div class="rule"><span class="rule-name">Symmetrieachse:</span> $x = d$ (Scheitelform) bzw. $x = -\frac{p}{2}$ (Normalform)</div>
+  <div class="rule"><span class="rule-name">Wertebereich:</span> $a>0$: $W = [e;\,\infty)$ &emsp; $a<0$: $W = (-\infty;\,e]$</div>
+  <div class="rule"><span class="rule-name">$y$-Achsenabschnitt:</span> $f(0) = c$ &emsp;(einfach $x=0$ einsetzen)</div>
+</div>
+
+</section>
+
+<section class="topic" id="formen">
+<span class="kicker">Darstellungsformen</span>
+<h2>2. Die drei Darstellungsformen</h2>
+
+<p>Jede quadratische Funktion lässt sich in drei äquivalenten Formen schreiben. Je nach Aufgabenstellung ist eine Form besonders nützlich:</p>
+
+<div class="cheatsheet">
+  <div class="rule"><span class="rule-name">Normalform</span> $f(x) = x^2 + px + q$ &rarr; gut zum Ablesen von $p$, $q$ für die $p$-$q$-Formel; $y$-Achsenabschnitt = $q$</div>
+  <div class="rule"><span class="rule-name">Scheitelform</span> $f(x) = a(x-d)^2 + e$ &rarr; Scheitelpunkt $S(d\,|\,e)$ direkt ablesbar; Öffnung und Breite über $a$</div>
+  <div class="rule"><span class="rule-name">Linearfaktorform</span> $f(x) = a(x-x_1)(x-x_2)$ &rarr; Nullstellen $x_1$, $x_2$ direkt ablesbar</div>
+</div>
+
+<h3>Umrechnung zwischen den Formen</h3>
+
+<div class="procedure">
+  <h4>Scheitelform &rarr; Normalform</h4>
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">Klammer ausmultiplizieren.</span></p>
+  <p class="step-work">$(x-d)^2 = x^2 - 2dx + d^2$</p>
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">Mit $a$ multiplizieren und $e$ addieren.</span></p>
+  <p class="step-work">$a(x-d)^2 + e = ax^2 - 2adx + ad^2 + e$</p>
+</div>
+
+<div class="procedure">
+  <h4>Normalform &rarr; Scheitelform (quadratische Ergänzung)</h4>
+  <p>Siehe Abschnitt 3 für das vollständige Verfahren.</p>
+</div>
+
+<div class="procedure">
+  <h4>Normalform &rarr; Linearfaktorform</h4>
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">Nullstellen bestimmen</span> (z.B. mit $p$-$q$-Formel).</p>
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">Einsetzen:</span></p>
+  <p class="step-work">$f(x) = a(x - x_1)(x - x_2)$</p>
+  <p class="note">Bei Normalparabel ($a=1$) einfach: $f(x) = (x-x_1)(x-x_2)$.</p>
+  <p class="note warn">Nur möglich, wenn Nullstellen existieren ($D \ge 0$)!</p>
+</div>
+
+</section>
+
+<section class="topic" id="qe">
+<span class="kicker">Standardverfahren</span>
+<h2>3. Quadratische Ergänzung</h2>
+
+<p>Das wichtigste Umformungsverfahren in diesem Thema. Du brauchst es, um den Scheitelpunkt zu bestimmen, die Scheitelform zu finden und in der Sachaufgabe das Maximum/Minimum abzulesen.</p>
+
+<div class="procedure">
+  <h4>Ablauf: Quadratische Ergänzung</h4>
+
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">Sicherstellen, dass vor $x^2$ der Faktor $1$ steht.</span></p>
+  <p class="step-work">Falls $a \ne 1$: Faktor $a$ ausklammern. Beispiel: $-3x^2 + 6x + 9 = -3(x^2 - 2x) + 9$</p>
+
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">Halben Koeffizienten von $x$ quadrieren.</span></p>
+  <p class="step-work">Bei $x^2 + px$: ergänze $\left(\frac{p}{2}\right)^2$</p>
+
+  <p class="step-row"><span class="step-label">3</span><span class="step-title">Ergänzen und sofort wieder abziehen.</span></p>
+  <p class="step-work">$x^2 + px + \left(\frac{p}{2}\right)^2 - \left(\frac{p}{2}\right)^2 + q$</p>
+
+  <p class="step-row"><span class="step-label">4</span><span class="step-title">Binomische Formel rückwärts anwenden.</span></p>
+  <p class="step-work">$= \left(x + \frac{p}{2}\right)^2 - \frac{p^2}{4} + q$</p>
+
+  <p class="step-row"><span class="step-label">5</span><span class="step-title">Scheitelform ablesen.</span></p>
+  <p class="step-work">$S\!\left(-\frac{p}{2}\;\Big|\; q - \frac{p^2}{4}\right)$</p>
+
+  <p class="note warn">Wenn du in Schritt 1 einen Faktor $a$ ausgeklammert hast, vergiss nicht, den abgezogenen Term mit $a$ zu multiplizieren!</p>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 1 <span class="badge be">5 BE</span> <span class="badge afb">AFB I</span></h4>
+  <p>Bestimme die Scheitelform von $f(x) = x^2 + 6x - 7$ durch quadratische Ergänzung. Gib den Scheitelpunkt an.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Halbiere den Koeffizienten von $x$: $\frac{6}{2} = 3$. Quadriere: $3^2 = 9$.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Ergänzen:</span></p>
+    <p class="step-work">$f(x) = x^2 + 6x + 9 - 9 - 7$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Binomische Formel:</span></p>
+    <p class="step-work">$f(x) = (x+3)^2 - 16$</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$f(x) = (x+3)^2 - 16$, &emsp; Scheitelpunkt $S(-3\,|\,{-}16)$</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 2 <span class="badge be">5 BE</span> <span class="badge afb">AFB I–II</span></h4>
+  <p>Bestimme die Scheitelform von $g(x) = -3x^2 + 6x + 9$.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Klammere zuerst $-3$ aus den $x$-Termen aus: $-3(x^2 - 2x) + 9$.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Ausklammern:</span></p>
+    <p class="step-work">$g(x) = -3(x^2 - 2x) + 9$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Ergänzen innerhalb der Klammer:</span></p>
+    <p class="step-work">$= -3(x^2 - 2x + 1 - 1) + 9$</p>
+    <p class="step-row"><span class="step-label">3</span><span class="step-title">Binomische Formel + auflösen:</span></p>
+    <p class="step-work">$= -3(x-1)^2 + 3 + 9 = -3(x-1)^2 + 12$</p>
+    <p class="note warn">Die $-1$ innerhalb der Klammer wird mit $-3$ multipliziert zu $+3$. Das wird oft vergessen!</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$g(x) = -3(x-1)^2 + 12$, &emsp; Scheitelpunkt $S(1\,|\,12)$, nach unten geöffnet.</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="parameter">
+<span class="kicker">Transformation</span>
+<h2>4. Parametereinfluss &amp; Transformation</h2>
+
+<p>Ausgangspunkt ist immer die <strong>Normalparabel</strong> $y = x^2$. Von ihr aus beschreibst du Veränderungen:</p>
+
+<div class="cheatsheet">
+  <h4>Parameter in $f(x) = a(x-d)^2 + e$</h4>
+  <div class="rule"><span class="rule-name">$d > 0$:</span> Verschiebung um $d$ nach <strong>rechts</strong> &emsp;|&emsp; $d < 0$: nach <strong>links</strong></div>
+  <div class="rule"><span class="rule-name">$e > 0$:</span> Verschiebung um $e$ nach <strong>oben</strong> &emsp;|&emsp; $e < 0$: nach <strong>unten</strong></div>
+  <div class="rule"><span class="rule-name">$|a| > 1$:</span> <strong>Streckung</strong> (schmaler) &emsp;|&emsp; $0 < |a| < 1$: <strong>Stauchung</strong> (breiter)</div>
+  <div class="rule"><span class="rule-name">$a < 0$:</span> <strong>Spiegelung</strong> an der $x$-Achse (Öffnung nach unten)</div>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 3 <span class="badge be">4 BE</span> <span class="badge afb">AFB II</span></h4>
+  <p>Beschreibe, wie der Graph von $p(x) = 0{,}5(x-4)^2 - 2$ aus der Normalparabel $y = x^2$ hervorgeht.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Lies $a = 0{,}5$, $d = 4$, $e = -2$ ab. Was bewirkt $a = 0{,}5$ im Vergleich zur Normalparabel?</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">$a = 0{,}5$: Stauchung (breiter als Normalparabel), keine Spiegelung ($a > 0$).</span></p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">$d = 4$: Verschiebung um $4$ Einheiten nach rechts.</span></p>
+    <p class="step-row"><span class="step-label">3</span><span class="step-title">$e = -2$: Verschiebung um $2$ Einheiten nach unten.</span></p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>Stauchung (Faktor $0{,}5$, breiter), Verschiebung 4 nach rechts und 2 nach unten. Scheitelpunkt $S(4\,|\,{-}2)$, Öffnung nach oben.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 4 <span class="badge be">3 BE</span> <span class="badge afb">AFB II</span></h4>
+  <p>Gib ohne Rechnung für $f_1(x)=(x+2)^2$, $f_2(x)=-2(x-3)^2+1$ und $f_3(x)=0{,}5(x-1)^2-4$ jeweils Scheitelpunkt und Öffnungsrichtung an.</p>
+
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$f_1$: $S(-2\,|\,0)$, nach oben. &emsp; $f_2$: $S(3\,|\,1)$, nach unten. &emsp; $f_3$: $S(1\,|\,{-}4)$, nach oben.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 4b <span class="badge be">3 BE</span> <span class="badge afb">AFB II</span></h4>
+  <p>Eine nach oben geöffnete Normalparabel ($a=1$) hat den Scheitelpunkt $S(-1\,|\,5)$. Bestimme die Funktionsgleichung in Scheitelform und in Normalform.</p>
+
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Scheitelform:</span></p>
+    <p class="step-work">$f(x) = (x+1)^2 + 5$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Ausmultiplizieren:</span></p>
+    <p class="step-work">$f(x) = x^2 + 2x + 1 + 5 = x^2 + 2x + 6$</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$f(x) = (x+1)^2 + 5 = x^2 + 2x + 6$</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="gleichungen">
+<span class="kicker">Gleichungen</span>
+<h2>5. Quadratische Gleichungen lösen</h2>
+
+<div class="procedure">
+  <h4>Ablauf: $p$-$q$-Formel anwenden</h4>
+
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichung auf Normalform bringen: $x^2 + px + q = 0$.</span></p>
+  <p class="note warn">Steht vor $x^2$ ein Faktor $\ne 1$? Dann erst durch diesen Faktor teilen! Beispiel: $3x^2 + 6x - 24 = 0 \;\Rightarrow\; x^2 + 2x - 8 = 0$.</p>
+
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">$p$ und $q$ ablesen.</span></p>
+  <p class="note">$p$ ist der Koeffizient von $x$ (mit Vorzeichen!), $q$ ist die Konstante.</p>
+
+  <p class="step-row"><span class="step-label">3</span><span class="step-title">In die Formel einsetzen:</span></p>
+  <p class="step-work">$$x_{1/2} = -\frac{p}{2} \pm \sqrt{\left(\frac{p}{2}\right)^2 - q}$$</p>
+
+  <p class="step-row"><span class="step-label">4</span><span class="step-title">Diskriminante $D$ prüfen.</span></p>
+  <p class="step-work">$D = \left(\frac{p}{2}\right)^2 - q$</p>
+  <p class="note">$D > 0$: zwei Lösungen &emsp; $D = 0$: eine Doppellösung &emsp; $D < 0$: keine reelle Lösung</p>
+
+  <p class="step-row"><span class="step-label">5</span><span class="step-title">Ergebniskontrolle (Probe): Lösungen in die Originalgleichung einsetzen.</span></p>
+</div>
+
+<div class="procedure">
+  <h4>Alternativen zur $p$-$q$-Formel</h4>
+
+  <p class="step-row"><span class="step-label">A</span><span class="step-title">Reinquadratische Gleichung: $ax^2 = c$</span></p>
+  <p class="step-work">Direkt umstellen: $x^2 = \frac{c}{a}$, dann $x = \pm\sqrt{\frac{c}{a}}$</p>
+  <p class="note">Beispiel: $5x^2 = 45 \;\Rightarrow\; x^2 = 9 \;\Rightarrow\; x = \pm 3$</p>
+
+  <p class="step-row"><span class="step-label">B</span><span class="step-title">Gleichung mit Klammer: $(x-d)^2 = k$</span></p>
+  <p class="step-work">Wurzel ziehen: $x - d = \pm\sqrt{k}$, dann $x = d \pm \sqrt{k}$</p>
+  <p class="note">Beispiel: $(x+3)^2 = 16 \;\Rightarrow\; x = -3 \pm 4 \;\Rightarrow\; x_1 = 1,\; x_2 = -7$</p>
+  <p class="note warn">Das $\pm$ nicht vergessen! Beide Vorzeichen der Wurzel liefern Lösungen.</p>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 5 <span class="badge be">7 BE</span> <span class="badge afb">AFB I</span></h4>
+  <p>Löse mit der $p$-$q$-Formel: &emsp;(i) $x^2 - 10x + 21 = 0$ &emsp;(ii) $x^2 + 4x + 7 = 0$ &emsp;(iii) $3x^2 + 6x - 24 = 0$</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>(i) $p=-10$, $q=21$. &emsp; (ii) Prüfe die Diskriminante! &emsp; (iii) Erst durch $3$ teilen.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p><strong>(i)</strong> $x_{1/2} = 5 \pm \sqrt{25-21} = 5 \pm 2$</p>
+    <p><strong>(ii)</strong> $D = 4 - 7 = -3 < 0$ &rarr; keine reelle Lösung.</p>
+    <p><strong>(iii)</strong> $x^2 + 2x - 8 = 0$ &rarr; $x_{1/2} = -1 \pm \sqrt{1+8} = -1 \pm 3$</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>(i) $x_1 = 3$, $x_2 = 7$ &emsp; (ii) keine reelle Lösung &emsp; (iii) $x_1 = 2$, $x_2 = -4$</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 5b <span class="badge be">3 BE</span> <span class="badge afb">AFB I</span></h4>
+  <p>Löse durch Ausklammern: $x^2 + 5x = 0$</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Klammere $x$ aus. Wann wird ein Produkt null?</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$x(x+5) = 0 \;\Rightarrow\; x_1 = 0$, $x_2 = -5$</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="vieta">
+<span class="kicker">Vieta</span>
+<h2>6. Satz von Vieta</h2>
+
+<div class="cheatsheet">
+  <h4>Die zwei Beziehungen</h4>
+  <div class="rule">Für $x^2 + px + q = 0$ mit Lösungen $x_1, x_2$ gilt: &emsp; $x_1 + x_2 = -p$ &emsp; und &emsp; $x_1 \cdot x_2 = q$</div>
+</div>
+
+<p><strong>Wozu?</strong> Vieta erlaubt dir, aus bekannten Lösungen die Gleichung zu rekonstruieren – oder umgekehrt, aus Koeffizienten Rückschlüsse auf die Lösungen zu ziehen, ohne die $p$-$q$-Formel zu benutzen.</p>
+
+<div class="procedure">
+  <h4>Ablauf: Gleichung aus Lösungen bestimmen</h4>
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">$p$ berechnen:</span></p>
+  <p class="step-work">$p = -(x_1 + x_2)$</p>
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">$q$ berechnen:</span></p>
+  <p class="step-work">$q = x_1 \cdot x_2$</p>
+  <p class="step-row"><span class="step-label">3</span><span class="step-title">Gleichung aufschreiben:</span></p>
+  <p class="step-work">$x^2 + px + q = 0$</p>
+  <p class="step-row"><span class="step-label">4</span><span class="step-title">Probe: Eine Lösung einsetzen.</span></p>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 6 <span class="badge be">4 BE</span> <span class="badge afb">AFB II</span></h4>
+  <p>Die Gleichung $x^2 + px + q = 0$ hat die Lösungen $x_1 = -2$ und $x_2 = 7$. Bestimme $p$ und $q$.</p>
+
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Summe:</span></p>
+    <p class="step-work">$x_1 + x_2 = -2 + 7 = 5 = -p \;\Rightarrow\; p = -5$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Produkt:</span></p>
+    <p class="step-work">$x_1 \cdot x_2 = (-2) \cdot 7 = -14 = q$</p>
+    <p class="step-row"><span class="step-label">3</span><span class="step-title">Probe ($x=-2$):</span></p>
+    <p class="step-work">$4 + 10 - 14 = 0$ &ensp; &#10003;</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$p = -5$, $q = -14$. &emsp; Gleichung: $x^2 - 5x - 14 = 0$</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 7 <span class="badge be">3 BE</span> <span class="badge afb">AFB III</span></h4>
+  <p>Begründe mit Vieta: Hat $x^2 + px + q = 0$ eine positive und eine negative Lösung, so gilt $q < 0$. Was lässt sich über $p$ sagen?</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Was ergibt das Produkt einer positiven und einer negativen Zahl? Was ist mit der Summe?</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Produkt:</span></p>
+    <p class="step-work">$x_1 > 0$, $x_2 < 0 \;\Rightarrow\; x_1 \cdot x_2 < 0 \;\Rightarrow\; q < 0$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Summe:</span></p>
+    <p class="step-work">$x_1 + x_2 = -p$; je nach Beträgen kann die Summe positiv, negativ oder null sein &rarr; über $p$ lässt sich ohne weitere Information keine eindeutige Aussage treffen.</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>Es gilt $q < 0$ (Produkt verschiedener Vorzeichen). Über $p$ kann man ohne Kenntnis der Beträge nichts Allgemeines sagen.</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="schnitt">
+<span class="kicker">Schnittpunkte</span>
+<h2>7. Schnittpunkte &amp; Lagebeziehungen</h2>
+
+<div class="procedure">
+  <h4>Ablauf: Schnittpunkte zweier Funktionen bestimmen</h4>
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichsetzen: $f(x) = g(x)$</span></p>
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">Umformen auf $\ldots = 0$ (quadratische Gleichung).</span></p>
+  <p class="step-row"><span class="step-label">3</span><span class="step-title">Lösen (z.B. $p$-$q$-Formel, Ausklammern).</span></p>
+  <p class="step-row"><span class="step-label">4</span><span class="step-title">$y$-Werte berechnen: $x$-Werte in $f$ oder $g$ einsetzen.</span></p>
+  <p class="step-row"><span class="step-label">5</span><span class="step-title">Schnittpunkte als Koordinaten angeben: $S(x\,|\,y)$.</span></p>
+  <p class="note warn">Am einfachsten für den $y$-Wert: in die einfachere der beiden Funktionen einsetzen (z.B. die Gerade).</p>
+</div>
+
+<div class="cheatsheet">
+  <h4>Lagebeziehungen über die Diskriminante</h4>
+  <div class="rule"><span class="rule-name">$D > 0$:</span> Zwei Schnittpunkte (Gerade schneidet Parabel / Parabeln schneiden sich)</div>
+  <div class="rule"><span class="rule-name">$D = 0$:</span> Berührpunkt (Gerade ist Tangente an die Parabel)</div>
+  <div class="rule"><span class="rule-name">$D < 0$:</span> Kein gemeinsamer Punkt</div>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 8 <span class="badge be">4 BE</span> <span class="badge afb">AFB II</span></h4>
+  <p>Bestimme die Schnittpunkte von $f(x) = x^2 + 2x - 8$ mit $g(x) = 2x$.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Gleichsetzen: $x^2 + 2x - 8 = 2x$. Vereinfache!</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichsetzen und umformen:</span></p>
+    <p class="step-work">$x^2 + 2x - 8 = 2x \;\Rightarrow\; x^2 - 8 = 0 \;\Rightarrow\; x^2 = 8$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Wurzel ziehen:</span></p>
+    <p class="step-work">$x = \pm\sqrt{8} = \pm 2\sqrt{2} \approx \pm 2{,}83$</p>
+    <p class="step-row"><span class="step-label">3</span><span class="step-title">$y$-Werte über $g$:</span></p>
+    <p class="step-work">$g(2\sqrt{2}) = 4\sqrt{2} \approx 5{,}66$, &emsp; $g(-2\sqrt{2}) = -4\sqrt{2} \approx -5{,}66$</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$S_1(2\sqrt{2}\,|\,4\sqrt{2})$ und $S_2(-2\sqrt{2}\,|\,{-}4\sqrt{2})$</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 9 <span class="badge be">4 BE</span> <span class="badge afb">AFB II</span></h4>
+  <p>Für welches $c$ berührt die Gerade $g(x) = -4x + c$ die Parabel $f(x) = x^2$? Bestimme den Berührpunkt.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Berührung = genau eine Lösung = Diskriminante $D = 0$.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichsetzen:</span></p>
+    <p class="step-work">$x^2 = -4x + c \;\Rightarrow\; x^2 + 4x - c = 0$</p>
+    <p class="step-row"><span class="step-label">2</span><span class="step-title">Diskriminante $= 0$:</span></p>
+    <p class="step-work">$D = 4 + c = 0 \;\Rightarrow\; c = -4$</p>
+    <p class="step-row"><span class="step-label">3</span><span class="step-title">Berührpunkt:</span></p>
+    <p class="step-work">$(x+2)^2 = 0 \;\Rightarrow\; x = -2$, $y = 4$ &emsp; &rarr; &emsp; $P(-2\,|\,4)$</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$c = -4$, &emsp; Berührpunkt $P(-2\,|\,4)$</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="anwendung">
+<span class="kicker">Modellierung</span>
+<h2>8. Anwendungsaufgaben</h2>
+
+<div class="procedure">
+  <h4>Ablauf: Sachaufgabe mit quadratischer Funktion</h4>
+  <p class="step-row"><span class="step-label">1</span><span class="step-title">Funktion und Variablen identifizieren.</span></p>
+  <p class="note">Was ist $x$? Was ist $f(x)$? In welchem Bereich ist das Modell sinnvoll?</p>
+  <p class="step-row"><span class="step-label">2</span><span class="step-title">Scheitelform bestimmen &rarr; Maximum/Minimum ablesen.</span></p>
+  <p class="step-row"><span class="step-label">3</span><span class="step-title">Nullstellen bestimmen &rarr; Randwerte des Modells.</span></p>
+  <p class="note">Im Sachkontext oft: nur die positive Nullstelle ist relevant!</p>
+  <p class="step-row"><span class="step-label">4</span><span class="step-title">Funktionswerte berechnen für konkrete Fragen.</span></p>
+  <p class="step-row"><span class="step-label">5</span><span class="step-title">Ergebnisse im Sachzusammenhang formulieren (mit Einheiten!).</span></p>
+  <p class="note warn">Antwortsatz nicht vergessen! „Die Brücke ist $9\,$m hoch" – nicht einfach nur „$9$".</p>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 10 <span class="badge be">10 BE</span> <span class="badge afb">AFB II–III</span></h4>
+  <p>Eine Bogenbrücke hat den Querschnitt $h(x) = -0{,}25x^2 + 3x$ ($x$: horizontale Position in m, $h(x)$: Höhe in m, Brücke beginnt bei $x=0$).</p>
+  <p>a) Wie breit ist die Brücke (Abstand der Auflagepunkte)? &emsp; b) Wie hoch ist die Brücke an der höchsten Stelle? &emsp; c) In welchem Bereich ist die Brücke mindestens $5\,$m hoch?</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>a) Nullstellen bestimmen! &emsp; b) Scheitelform &rarr; Maximum. &emsp; c) Ungleichung $h(x) \ge 5$ lösen.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p><strong>a) Nullstellen (Auflagepunkte):</strong></p>
+    <p class="step-work">$-0{,}25x^2 + 3x = 0 \;\Rightarrow\; x(-0{,}25x + 3) = 0$</p>
+    <p class="step-work">$x_1 = 0$, $x_2 = 12$ &emsp; &rarr; Die Brücke ist $12\,$m breit.</p>
+
+    <p><strong>b) Scheitelform:</strong></p>
+    <p class="step-work">$h(x) = -0{,}25(x^2 - 12x) = -0{,}25(x-6)^2 + 9$</p>
+    <p class="step-work">Maximum: $9\,$m bei $x = 6\,$m (Mitte der Brücke).</p>
+
+    <p><strong>c) Ungleichung:</strong></p>
+    <p class="step-work">$-0{,}25x^2 + 3x \ge 5 \;\Rightarrow\; x^2 - 12x + 20 \le 0$ (nach $\cdot(-4)$, Zeichen dreht!)</p>
+    <p class="step-work">$x_{1/2} = 6 \pm \sqrt{36-20} = 6 \pm 4$</p>
+    <p class="step-work">Lösung: $x \in [2;\; 10]$</p>
+    <p class="note warn">Beim Multiplizieren mit einer negativen Zahl dreht sich das Ungleichungszeichen!</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>a) Die Brücke ist $12\,$m breit. &emsp; b) Maximale Höhe: $9\,$m in der Mitte. &emsp; c) Mindestens $5\,$m hoch für $x \in [2;\, 10]$.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 11 <span class="badge be">4 BE</span> <span class="badge afb">AFB II–III</span></h4>
+  <p>Eine Fontäne spritzt Wasser nach der Funktion $w(t) = -5t^2 + 10t$ ($t$: Zeit in Sekunden, $w(t)$: Höhe in Metern). Bestimme die maximale Höhe und die Zeit, nach der das Wasser wieder am Boden ankommt.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Scheitelform für die maximale Höhe. Nullstellen für die Landung.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-work">$w(t) = -5(t^2 - 2t) = -5(t-1)^2 + 5$</p>
+    <p class="step-work">Maximum: $5\,$m nach $1\,$s.</p>
+    <p class="step-work">Nullstellen: $-5t(t-2) = 0 \;\Rightarrow\; t_1 = 0$, $t_2 = 2\,$s</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>Maximale Höhe: $5\,$m nach $1\,$s. Das Wasser landet nach $2\,$s wieder am Boden.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Aufgabe 12 <span class="badge be">4 BE</span> <span class="badge afb">AFB III</span></h4>
+  <p>Ein rechteckiger Garten soll mit $24\,$m Zaun eingezäunt werden (eine Seite liegt an einer Wand, dort kein Zaun nötig). Die Fläche ist $A(x) = x(24 - 2x)$ mit Seitenlänge $x$. Welches $x$ maximiert die Fläche?</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Multipliziere aus und bringe $A(x)$ in Scheitelform.</p>
+  </details>
+  <details class="steps"><summary>Lösungsschritte</summary>
+    <p class="step-work">$A(x) = 24x - 2x^2 = -2(x^2 - 12x) = -2(x-6)^2 + 72$</p>
+    <p class="step-work">Maximum bei $x = 6$: $A(6) = 72\,\text{m}^2$. Sinnvoller Bereich: $0 < x < 12$.</p>
+  </details>
+  <details class="result"><summary>Ergebnis</summary>
+    <p>$x = 6\,$m, die andere Seite ist $24 - 12 = 12\,$m. Maximale Fläche: $72\,\text{m}^2$.</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="uebung">
+<span class="kicker">Übung</span>
+<h2>9. Gemischte Übungsaufgaben</h2>
+
+<p>Diese Aufgaben mischen die Themen, wie in einer Klassenarbeit. Versuche sie ohne Hilfe zu lösen und klappe erst danach die Lösung auf.</p>
+
+<div class="task">
+  <h4>Übung A: Funktion komplett untersuchen <span class="badge be">12 BE</span></h4>
+  <p>Gegeben: $f(x) = x^2 - 2x - 24$. Bestimme Scheitelform, Scheitelpunkt, Nullstellen, Linearfaktoren, $y$-Achsenabschnitt, Wertebereich und Monotoniebereiche.</p>
+
+  <details class="result"><summary>Lösung</summary>
+    <p>$f(x) = (x-1)^2 - 25$, &emsp; $S(1\,|\,{-}25)$</p>
+    <p>Nullstellen: $x_{1/2} = 1 \pm 5$ &rarr; $x_1 = 6$, $x_2 = -4$ &emsp; Linearfaktoren: $f(x) = (x-6)(x+4)$</p>
+    <p>$y$-Abschnitt: $f(0) = -24$ &emsp; $W_f = [-25;\,\infty)$</p>
+    <p>Fallend auf $(-\infty;\,1]$, steigend auf $[1;\,\infty)$.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Übung B: Funktionenschar <span class="badge be">4 BE</span> <span class="badge afb">AFB III</span></h4>
+  <p>Gegeben: $f_t(x) = x^2 + 4x + t$. Für welche $t$ schneidet der Graph die $x$-Achse in zwei Punkten, berührt sie oder hat keinen gemeinsamen Punkt?</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Bestimme die Diskriminante in Abhängigkeit von $t$. Der Scheitelpunkt liegt bei $S(-2\,|\,t-4)$.</p>
+  </details>
+  <details class="result"><summary>Lösung</summary>
+    <p>$D = 4 - t$ &emsp; &rarr; &emsp; $t < 4$: zwei Schnittpunkte &emsp; $t = 4$: Berührung &emsp; $t > 4$: kein Schnittpunkt.</p>
+    <p>Begründung: Scheitelpunkt $S(-2\,|\,t-4)$. Parabel nach oben offen &rarr; Nullstellen $\Leftrightarrow$ Scheitel auf/unter $x$-Achse $\Leftrightarrow$ $t-4 \le 0$.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Übung C: Schnittpunkte Parabel–Parabel <span class="badge be">4 BE</span></h4>
+  <p>Bestimme die Schnittpunkte von $f(x) = x^2 - 1$ und $g(x) = -x^2 + 2x + 3$.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Gleichsetzen, alles auf eine Seite, dann $p$-$q$-Formel.</p>
+  </details>
+  <details class="result"><summary>Lösung</summary>
+    <p>$x^2 - 1 = -x^2 + 2x + 3 \;\Rightarrow\; 2x^2 - 2x - 4 = 0 \;\Rightarrow\; x^2 - x - 2 = 0$</p>
+    <p>$x_{1/2} = \frac{1}{2} \pm \frac{3}{2}$ &rarr; $x_1 = 2$, $x_2 = -1$</p>
+    <p>$S_1(2\,|\,3)$ und $S_2(-1\,|\,0)$</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Übung D: Wertetabelle und Graph <span class="badge be">5 BE</span> <span class="badge afb">AFB I</span></h4>
+  <p>Gegeben: $f(x) = x^2 - 4x + 3$. Erstelle eine Wertetabelle für $x \in \{-1, 0, 1, 2, 3, 4, 5\}$ und bestätige den Scheitelpunkt rechnerisch.</p>
+
+  <details class="result"><summary>Lösung</summary>
+    <p>Wertetabelle: $f(-1) = 8$, $f(0) = 3$, $f(1) = 0$, $f(2) = -1$, $f(3) = 0$, $f(4) = 3$, $f(5) = 8$</p>
+    <p>Scheitelform: $f(x) = (x-2)^2 - 1$ &rarr; $S(2\,|\,{-}1)$ &#10003;</p>
+    <p>Nullstellen bei $x = 1$ und $x = 3$ bestätigen sich in der Tabelle.</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Übung E: Funktion aus drei Punkten <span class="badge be">4 BE</span> <span class="badge afb">AFB III</span></h4>
+  <p>Eine Parabel der Form $f(x) = ax^2 + bx + c$ verläuft durch $P_1(0\,|\,3)$, $P_2(1\,|\,0)$ und $P_3(3\,|\,0)$. Bestimme $a$, $b$ und $c$.</p>
+
+  <details class="hint"><summary>Tipp</summary>
+    <p>Aus $P_1$ folgt sofort $c = 3$. Da $P_2$ und $P_3$ Nullstellen sind, kannst du auch die Linearfaktorform nutzen.</p>
+  </details>
+  <details class="result"><summary>Lösung</summary>
+    <p>Nullstellen $x_1 = 1$, $x_2 = 3$ &rarr; $f(x) = a(x-1)(x-3)$</p>
+    <p>$P_1$: $f(0) = a \cdot (-1) \cdot (-3) = 3a = 3 \;\Rightarrow\; a = 1$</p>
+    <p>$f(x) = (x-1)(x-3) = x^2 - 4x + 3$ &rarr; $a = 1$, $b = -4$, $c = 3$</p>
+  </details>
+</div>
+
+<div class="task">
+  <h4>Übung F: Optimierung <span class="badge be">4 BE</span> <span class="badge afb">AFB III</span></h4>
+  <p>Ein Sprinkler bewässert einen Streifen. Die Wassermenge pro Meter wird durch $w(x) = -2x^2 + 16x$ beschrieben ($x$ in m, $w$ in Liter). Ab welcher Stelle ist die Bewässerung null? In welchem Bereich ist $w(x) > 24$?</p>
+
+  <details class="result"><summary>Lösung</summary>
+    <p>Nullstellen: $-2x(x-8) = 0$ &rarr; $x = 0$ und $x = 8\,$m.</p>
+    <p>$w(x) > 24$: $-2x^2 + 16x > 24 \;\Rightarrow\; x^2 - 8x + 12 < 0$</p>
+    <p>$x_{1/2} = 4 \pm 2$ &rarr; Lösung: $x \in (2;\, 6)$</p>
+  </details>
+</div>
+
+</section>
+
+<section class="topic" id="tipps">
+<span class="kicker">Strategie</span>
+<h2>10. Last-Minute-Tipps</h2>
+
+<div class="tip-box">
+  <h4>Zeitmanagement</h4>
+  <p>90 Minuten, 80 BE &rarr; ca. 1 Minute pro BE. Bleibe nicht zu lange an einer Aufgabe hängen. Wenn du nach 3 Minuten nicht weiterkommst, geh zur nächsten und komm später zurück.</p>
+</div>
+
+<div class="tip-box">
+  <h4>Die 5 häufigsten Fehler</h4>
+  <p><strong>1. Vorzeichen bei der $p$-$q$-Formel.</strong> $p$ ist der Koeffizient von $x$ <em>mit Vorzeichen</em>. Bei $x^2 - 6x + 5$ ist $p = -6$, nicht $6$.</p>
+  <p><strong>2. Vergessen, durch $a$ zu teilen.</strong> Die $p$-$q$-Formel funktioniert nur bei $x^2 + px + q = 0$. Bei $4x^2 - 8x - 12 = 0$ musst du erst durch $4$ teilen.</p>
+  <p><strong>3. Quadratische Ergänzung: ausgeklammerter Faktor vergessen.</strong> Bei $-3(x^2 - 2x)$ wird die $-1$ in der Klammer mit $-3$ zu $+3$, nicht zu $-3$.</p>
+  <p><strong>4. Ungleichungszeichen beim Multiplizieren mit negativer Zahl.</strong> Bei $\cdot(-2)$ dreht sich $>$ zu $<$.</p>
+  <p><strong>5. Im Sachkontext: nur relevante Lösungen.</strong> Negative Entfernungen oder Zeitpunkte vor dem Start sind nicht sinnvoll &rarr; aussortieren und begründen.</p>
+</div>
+
+<div class="tip-box">
+  <h4>Checkliste vor Abgabe</h4>
+  <p>&#9745; Alle Teilaufgaben bearbeitet?</p>
+  <p>&#9745; Rechenwege dokumentiert (nicht nur Ergebnis)?</p>
+  <p>&#9745; Bei Sachaufgaben: Antwortsatz mit Einheit?</p>
+  <p>&#9745; Probe bei quadratischen Gleichungen gemacht?</p>
+  <p>&#9745; Graph beschriftet (S, Nullstellen, $y$-Abschnitt)?</p>
+</div>
+
+</section>
+
+<footer class="doc">
+  Crashkurs erstellt am 16. April 2026 | Quadratische Funktionen &amp; Gleichungen | Klasse 9 Gymnasium MV
+</footer>
+
+</div><!-- /.wrap -->
+</body>
+</html>

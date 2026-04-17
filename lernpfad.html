@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lernpfad — Quadratische Funktionen (Kap. 2.1–2.9)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<style>
+  :root{
+    --bg:#f7f9fc; --card:#ffffff; --ink:#1a2332; --muted:#5a6b80;
+    --accent:#0b7a9e; --accent-dark:#074d65; --accent-soft:#e6f3f8;
+    --warn:#b4531a; --warn-soft:#fef0e3;
+    --ok:#2c7a3e; --ok-soft:#e7f5ec;
+    --line:#d7dde5; --rule-bg:#f3f6fa;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:16px;}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 20px 80px;}
+  header.doc{background:linear-gradient(135deg,var(--accent-dark),var(--accent));color:#fff;
+    padding:32px 32px 26px;border-radius:14px;margin-bottom:22px;box-shadow:0 6px 20px rgba(7,77,101,.20);}
+  header.doc h1{margin:0 0 8px;font-size:30px;font-weight:700;letter-spacing:.2px;}
+  header.doc .sub{opacity:.92;font-size:15.5px;line-height:1.5;}
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:18px 22px;margin-bottom:22px;}
+  nav.toc h2{margin:0 0 12px;font-size:17px;color:var(--accent-dark);}
+  nav.toc ol{margin:0;padding-left:22px;columns:2;column-gap:28px;}
+  nav.toc li{margin:4px 0;break-inside:avoid;}
+  nav.toc a{color:var(--ink);text-decoration:none;font-size:14.5px;}
+  nav.toc a:hover{color:var(--accent);text-decoration:underline;}
+  @media(max-width:640px){nav.toc ol{columns:1;}}
+  section.topic{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:24px 26px;margin-bottom:24px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+  section.topic h2{margin:0 0 4px;color:var(--accent-dark);font-size:22px;font-weight:700;}
+  section.topic .kicker{display:inline-block;background:var(--accent-soft);color:var(--accent-dark);
+    font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px;margin-bottom:10px;
+    letter-spacing:.3px;text-transform:uppercase;}
+  .lead{color:var(--muted);font-size:15.5px;margin:0 0 14px;}
+  .cheatsheet{background:var(--rule-bg);border-left:4px solid var(--accent);border-radius:6px;
+    padding:14px 18px;margin:14px 0;}
+  .cheatsheet h4{margin:0 0 8px;font-size:15px;color:var(--accent-dark);font-weight:700;}
+  .cheatsheet h4:not(:first-child){margin-top:14px;border-top:1px solid var(--line);padding-top:10px;}
+  .rule{margin:7px 0;font-size:14.5px;}
+  .rule .name{font-weight:600;color:var(--ink);}
+  .procedure{border:1.5px solid var(--accent);border-radius:8px;padding:14px 18px;margin:14px 0;
+    background:#fff;}
+  .procedure .title{font-weight:700;color:var(--accent-dark);margin-bottom:8px;font-size:15.5px;}
+  .procedure ol{margin:4px 0 0 18px;padding:0;}
+  .procedure ol li{margin:5px 0;font-size:14.5px;}
+  .task{border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:14px 0;
+    background:#fcfdfe;}
+  .task .tnum{display:inline-block;background:var(--accent);color:#fff;font-weight:700;
+    border-radius:999px;padding:2px 12px;font-size:13px;margin-right:8px;}
+  .task .ttitle{font-weight:600;font-size:15px;}
+  .task .q{margin:8px 0 10px;font-size:15px;}
+  .task details{margin:6px 0;border-radius:6px;overflow:hidden;}
+  .task details summary{cursor:pointer;padding:7px 14px;font-weight:600;font-size:14px;
+    user-select:none;list-style:none;outline:none;transition:background .15s;}
+  .task details summary::-webkit-details-marker{display:none;}
+  .task details summary::before{content:"▶ ";font-size:11px;margin-right:2px;
+    display:inline-block;transition:transform .15s;}
+  .task details[open] summary::before{transform:rotate(90deg);}
+  .task details.hint summary{background:#fff7e0;color:#7a5900;}
+  .task details.hint[open] summary{background:#ffefc2;}
+  .task details.hint > div{background:#fffaec;padding:10px 14px;border-top:1px solid #f0e3ba;}
+  .task details.steps summary{background:var(--accent-soft);color:var(--accent-dark);}
+  .task details.steps[open] summary{background:#d0e7f0;}
+  .task details.steps > div{background:#f4fafd;padding:10px 14px;border-top:1px solid #cfe1ea;}
+  .task details.result summary{background:var(--ok-soft);color:var(--ok);}
+  .task details.result[open] summary{background:#d1ecd8;}
+  .task details.result > div{background:#f2faf5;padding:10px 14px;border-top:1px solid #c7e2cf;}
+  .step-row{margin:10px 0 2px;}
+  .step-label{display:inline-block;background:var(--accent-dark);color:#fff;font-weight:700;
+    border-radius:50%;width:22px;height:22px;line-height:22px;text-align:center;font-size:12px;
+    margin-right:6px;vertical-align:middle;}
+  .step-title{font-weight:600;}
+  .step-work{margin:4px 0 2px 28px;font-size:15px;}
+  .note{margin:2px 0 4px 28px;font-size:13.5px;color:var(--muted);}
+  .note.warn{color:var(--warn);background:var(--warn-soft);padding:4px 10px;border-radius:4px;
+    border-left:3px solid var(--warn);margin-top:4px;}
+  .tip-box{background:linear-gradient(135deg,#fff8e1,#fff3cd);border:1px solid #e6cf74;
+    border-radius:10px;padding:14px 18px;margin:14px 0;}
+  .tip-box h3{margin:0 0 6px;color:#7a5900;font-size:16px;}
+  .merke{background:#fdf2e4;border:1px solid #e6cf74;border-left:4px solid #e6cf74;
+    border-radius:6px;padding:10px 16px;margin:12px 0;font-size:14.5px;}
+  .merke strong{color:#7a5900;}
+  .idee{background:#eef7ee;border-left:4px solid #2c7a3e;border-radius:6px;
+    padding:10px 16px;margin:12px 0;font-size:14.5px;}
+  .idee strong{color:#2c7a3e;}
+  .hinweis{background:#e9f3fa;border-left:4px solid var(--accent);border-radius:6px;
+    padding:10px 16px;margin:12px 0;font-size:14.5px;}
+  .hinweis strong{color:var(--accent-dark);}
+  .explain{color:#4a5c70;font-size:15px;margin:10px 0;}
+  table.vals{border-collapse:collapse;margin:10px 0;font-size:14px;}
+  table.vals th,table.vals td{border:1px solid var(--line);padding:5px 12px;text-align:center;min-width:38px;}
+  table.vals th{background:var(--rule-bg);font-weight:600;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:10px 0;}
+  @media(max-width:620px){.grid2{grid-template-columns:1fr;}}
+  footer.doc{text-align:center;color:var(--muted);font-size:13px;margin-top:30px;padding:20px;}
+  hr.sep{border:none;border-top:2px dashed var(--line);margin:26px 0;}
+  .badge{display:inline-block;background:var(--accent-soft);color:var(--accent-dark);
+    font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px;}
+  .wissen{background:#eef3fb;border:1.5px solid #6e9ecf;border-radius:8px;
+    padding:14px 18px;margin:14px 0;}
+  .wissen h4{margin:0 0 8px;color:#1a3c6e;font-size:15px;font-weight:700;}
+  .beispiel{background:#f9f9f9;border:1px solid var(--line);border-left:4px solid #8b5cf6;
+    border-radius:6px;padding:12px 16px;margin:12px 0;font-size:14.5px;}
+  .beispiel strong{color:#5b21b6;}
+  .achtung{background:#fff1f0;border-left:4px solid #d93025;border-radius:6px;
+    padding:10px 16px;margin:12px 0;font-size:14.5px;color:#7a1a12;}
+  .achtung strong{color:#d93025;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="doc">
+  <h1>Quadratische Funktionen &amp; Gleichungen</h1>
+  <div class="sub">Kapitel 2.1 – 2.9 · Selbstlernmaterial · Gymnasium Mittelstufe / Oberstufe<br>
+  Vollständige Theorie · Beispiele · Aufgaben mit gestuften Lösungen</div>
+</header>
+
+<nav class="toc">
+  <h2>Inhaltsverzeichnis</h2>
+  <ol>
+    <li><a href="#k21">2.1 Die Normalparabel</a></li>
+    <li><a href="#k22">2.2 Strecken und Stauchen</a></li>
+    <li><a href="#k23">2.3 Verschieben in y-Richtung</a></li>
+    <li><a href="#k24">2.4 Verschieben in x-Richtung</a></li>
+    <li><a href="#k25">2.5 Die Scheitelpunktform</a></li>
+    <li><a href="#k26">2.6 Allgemeine und faktorisierte Form</a></li>
+    <li><a href="#k27">2.7 Einfache quadratische Gleichungen</a></li>
+    <li><a href="#k28">2.8 Quadratische Ergänzung &amp; pq-Formel</a></li>
+    <li><a href="#k29">2.9 Grafisches Lösen / Schnittpunkte</a></li>
+  </ol>
+</nav>
+
+<!-- ===================== 2.1 ===================== -->
+<section class="topic" id="k21">
+  <div class="kicker">Kapitel 2.1</div>
+  <h2>Die Normalparabel</h2>
+  <p class="explain">Die Normalparabel ist die einfachste quadratische Funktion und das Grundmodell für alle Parabeln, die wir im Folgenden untersuchen. Alles, was wir in den nächsten Kapiteln über Strecken, Verschieben und Stauchen lernen, bezieht sich auf diese Ausgangsform. Es lohnt sich, die Normalparabel wirklich zu <em>verstehen</em> – nicht nur auswendig zu kennen.</p>
+
+  <p class="explain">Warum ist die Normalparabel so fundamental? Weil das Quadrieren eine der grundlegendsten mathematischen Operationen ist, die in der Natur überall auftaucht: Flächen wachsen quadratisch mit der Länge, die kinetische Energie wächst mit dem Quadrat der Geschwindigkeit, Schallintensitäten und Lichtintensitäten fallen mit dem Quadrat der Entfernung ab. Die Parabel ist kein willkürlich gewähltes Kurvenmodell – sie beschreibt reale Gesetzmäßigkeiten.</p>
+
+  <div class="idee"><strong>Analogie – die Satellitenschüssel:</strong> Eine Satellitenschüssel hat die Form einer Parabel. Alle Signale, die parallel zur Achse einfallen, werden im Brennpunkt gebündelt. Das liegt an der geometrischen Eigenschaft der Parabelform. Gleichzeitig ist die Parabel das Bahn-Modell für jeden geworfenen Ball (in Abwesenheit von Luftwiderstand): Er steigt nach einer Parabel auf und fällt nach derselben Form wieder herunter.</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Jeder x-Wert wird quadriert. Da $(-x)^2 = x^2$ gilt, ist die Parabel achsensymmetrisch zur y-Achse. Negative und positive x-Werte gleichen Betrags liefern denselben y-Wert. Das erklärt die typische U-Form: Weit vom Scheitel entfernt (große $|x|$) wachsen die Werte stark an; nahe am Scheitel ($x \approx 0$) bleiben sie klein und ändern sich langsam.</div>
+
+  <div class="wissen">
+    <h4>Wissen: Die Normalparabel</h4>
+    <p>Die <strong>Normalparabel</strong> ist der Graph der Funktion</p>
+    $$f(x) = x^2$$
+    <p>Sie hat folgende Eigenschaften:</p>
+    <ul>
+      <li><strong>Scheitelpunkt:</strong> $S(0 \mid 0)$ – der tiefste Punkt der Parabel</li>
+      <li><strong>Symmetrieachse:</strong> die y-Achse ($x = 0$)</li>
+      <li><strong>Öffnungsrichtung:</strong> nach oben</li>
+      <li><strong>Nullstelle:</strong> nur $x = 0$ (die Parabel berührt die x-Achse nur im Scheitelpunkt)</li>
+      <li><strong>Wertebereich:</strong> $f(x) \geq 0$ (alle y-Werte sind nicht-negativ)</li>
+    </ul>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Wertetabelle der Normalparabel</h4>
+    <table class="vals">
+      <tr><th>$x$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr>
+      <tr><th>$f(x)=x^2$</th><td>$9$</td><td>$4$</td><td>$1$</td><td>$0$</td><td>$1$</td><td>$4$</td><td>$9$</td></tr>
+    </table>
+    <h4>Das Stufenhöhen-Muster</h4>
+    <p class="rule">Die Differenzen aufeinanderfolgender Funktionswerte (bei ganzzahligen x-Werten, von links nach rechts) bilden immer die ungeraden Zahlen: $1, 3, 5, 7, 9, \ldots$</p>
+    <p class="rule">Genauer: Von $f(n)$ zu $f(n+1)$ beträgt die Differenz $2n+1$. Dieses Muster hilft beim schnellen Aufzeichnen ohne Taschenrechner.</p>
+    <h4>Formel auf einen Blick</h4>
+    <p class="rule"><span class="name">Funktionsterm:</span> $f(x) = x^2$</p>
+    <p class="rule"><span class="name">Scheitelpunkt:</span> $S(0 \mid 0)$</p>
+    <p class="rule"><span class="name">Symmetrieachse:</span> $x = 0$</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Normalparabel skizzieren</div>
+    <ol>
+      <li>Koordinatensystem mit geeignetem Maßstab zeichnen.</li>
+      <li>Scheitelpunkt $S(0\mid 0)$ einzeichnen.</li>
+      <li>Wertetabelle für $x = -3, -2, -1, 0, 1, 2, 3$ berechnen und Punkte einzeichnen.</li>
+      <li>Punkte mit einer glatten Kurve verbinden (keine Knicke!).</li>
+      <li>Symmetrie zur y-Achse nutzen: rechte Seite = Spiegelbild der linken.</li>
+    </ol>
+  </div>
+
+  <div class="merke"><strong>Merke:</strong> $f(x) = x^2$ liefert für $x = 3$ und $x = -3$ denselben Wert $f(3) = f(-3) = 9$. Das liegt an der Symmetrie: Für alle $x$ gilt $f(-x) = (-x)^2 = x^2 = f(x)$. Diese Eigenschaft nennt man <em>gerade Funktion</em>.</div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Bestimme alle Punkte auf der Normalparabel $f(x) = x^2$, deren y-Koordinate gleich $16$ ist, und überprüfe anschließend das Stufenhöhen-Muster für $x = 0$ bis $x = 4$.<br><br>
+  <strong>Schritt 1 – Gleichung aufstellen:</strong> Wir suchen $x$ mit $f(x) = 16$, also $x^2 = 16$.<br>
+  <strong>Schritt 2 – Wurzel ziehen (mit ±!):</strong> $x = \pm\sqrt{16} = \pm 4$. Es gibt zwei Punkte: $P_1(4 \mid 16)$ und $P_2(-4 \mid 16)$. Sie liegen symmetrisch zur y-Achse.<br>
+  <strong>Schritt 3 – Stufenhöhen prüfen:</strong> Funktionswerte: $f(0)=0,\; f(1)=1,\; f(2)=4,\; f(3)=9,\; f(4)=16$. Differenzen: $1-0=1,\; 4-1=3,\; 9-4=5,\; 16-9=7$. Die Folge $1, 3, 5, 7$ sind ungerade Zahlen – das Muster stimmt.<br>
+  <strong>Warum?</strong> $(n+1)^2 - n^2 = n^2 + 2n + 1 - n^2 = 2n+1$ – das ist immer eine ungerade Zahl.</div>
+
+  <!-- Aufgaben 2.1 -->
+  <div class="task">
+    <span class="tnum">A 1</span><span class="ttitle">Wertetabelle und Graph</span>
+    <p class="q">Erstelle eine Wertetabelle für $f(x) = x^2$ mit den x-Werten $-3; -2; -1; 0; 1; 2; 3$ und skizziere den Graphen. Markiere den Scheitelpunkt und die Symmetrieachse.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Berechne jeden Wert einzeln: $f(-3) = (-3)^2 = 9$, $f(-2) = (-2)^2 = 4$ usw. Denke daran: $(-x)^2 = x^2$, also sind die Werte für $x$ und $-x$ immer gleich.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Wertetabelle berechnen.</span></p>
+      <table class="vals">
+        <tr><th>$x$</th><td>$-3$</td><td>$-2$</td><td>$-1$</td><td>$0$</td><td>$1$</td><td>$2$</td><td>$3$</td></tr>
+        <tr><th>$f(x)$</th><td>$9$</td><td>$4$</td><td>$1$</td><td>$0$</td><td>$1$</td><td>$4$</td><td>$9$</td></tr>
+      </table>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Stufenhöhen-Muster prüfen.</span></p>
+      <p class="step-work">Differenzen (von links): $9-4=5$, $4-1=3$, $1-0=1$, $0-1=-1$ (steigt wieder). Von rechts: $1,3,5,\ldots$ – die ungeraden Zahlen.</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Graph skizzieren.</span></p>
+      <p class="step-work">Punkte einzeichnen und mit glatter U-förmiger Kurve verbinden. Scheitelpunkt $S(0\mid 0)$ markieren, Symmetrieachse als gestrichelte Linie bei $x=0$ einzeichnen.</p>
+      <p class="note">Die Symmetrie zeigt sich im Graphen: die linke Seite ist das Spiegelbild der rechten.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>Wertetabelle wie oben. Scheitelpunkt: $S(0 \mid 0)$. Symmetrieachse: $x = 0$ (y-Achse). Graph öffnet nach oben.</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 2</span><span class="ttitle">Koordinaten bestimmen</span>
+    <p class="q">Ein Punkt $P$ liegt auf der Normalparabel und hat die x-Koordinate $x = -5$. Bestimme die y-Koordinate. Gibt es einen weiteren Punkt auf der Parabel mit derselben y-Koordinate?</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Setze $x = -5$ in $f(x) = x^2$ ein. Überlege dann: Für welchen anderen x-Wert ergibt sich derselbe Funktionswert?</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">y-Koordinate berechnen.</span></p>
+      <p class="step-work">$f(-5) = (-5)^2 = 25$</p>
+      <p class="note">Also liegt der Punkt $P(-5 \mid 25)$ auf der Parabel.</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Weiteren Punkt mit $y=25$ suchen.</span></p>
+      <p class="step-work">Wegen der Symmetrie gilt: $f(5) = 5^2 = 25$</p>
+      <p class="note">Der Punkt $Q(5 \mid 25)$ liegt ebenfalls auf der Parabel und hat dieselbe y-Koordinate.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$P(-5 \mid 25)$. Der symmetrische Punkt ist $Q(5 \mid 25)$.</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> Die Normalparabel ist unser Ausgangspunkt. In Kapitel 2.2 lernst du, wie man sie durch den Faktor $a$ streckt oder staucht – die Form der Parabel verändert sich, der Scheitelpunkt bleibt aber bei $(0\mid 0)$.</div>
+</section>
+
+<!-- ===================== 2.2 ===================== -->
+<section class="topic" id="k22">
+  <div class="kicker">Kapitel 2.2</div>
+  <h2>Strecken und Stauchen der Parabel</h2>
+  <p class="explain">Mit dem Faktor $a$ vor dem $x^2$ können wir die Parabel schmaler oder breiter machen. Der Scheitelpunkt bleibt dabei immer im Ursprung – nur die "Steilheit" der Parabel ändert sich. Ist $a$ negativ, dreht sich die Parabel um: sie öffnet dann nach unten.</p>
+
+  <p class="explain">Warum verändert $a$ die Form? Stell dir vor, du nimmst die Normalparabel und "streckst" sie senkrecht: Jeder Punkt, der bei $f(x)=x^2$ die Höhe $y$ hatte, liegt jetzt bei $a \cdot y$. Bei $a=3$ ist jeder Punkt dreimal so hoch wie vorher – die Kurve wirkt steiler und schmaler. Bei $a=\tfrac{1}{3}$ liegt jeder Punkt nur ein Drittel so hoch – die Kurve wirkt flacher und breiter. Das Entscheidende: Die x-Koordinaten der Punkte bleiben unverändert, nur die y-Koordinaten skalieren.</p>
+
+  <div class="idee"><strong>Analogie – Schattenprojektion:</strong> Stell dir eine Parabel aus Draht, die du senkrecht von oben beleuchtest. Der Schatten zeigt die ursprüngliche Form. Wenn du die Lichtquelle schräg stellst und die Projektion in die Höhe ziehst, wirkt die Parabel schlanker (großes $a$). Oder: Denke an ein Gummiband in U-Form – nach oben gezogen wird es schmal, entspannt breit.</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Multiplizieren wir alle Funktionswerte der Normalparabel mit $a$, so skalieren wir den Graphen vertikal. Für $a \gt 1$ wird jeder y-Wert größer → Parabel wird schlanker. Für $0 \lt a \lt 1$ wird jeder y-Wert kleiner → Parabel wird breiter. Für $a \lt 0$ werden alle y-Werte negativ → Parabel öffnet nach unten (die obere Kurve wird zur unteren).</div>
+
+  <div class="wissen">
+    <h4>Wissen: Die Funktion $f(x) = a \cdot x^2$</h4>
+    <p>Der Parameter $a$ heißt <strong>Streckfaktor</strong> (auch: Öffnungsparameter).</p>
+    <ul>
+      <li>$a \gt 1$: Parabel ist <em>schlanker</em> als die Normalparabel (gestreckt)</li>
+      <li>$0 \lt a \lt 1$: Parabel ist <em>breiter</em> als die Normalparabel (gestaucht)</li>
+      <li>$a = 1$: Normalparabel</li>
+      <li>$a \lt 0$: Parabel öffnet <em>nach unten</em> (Hochparabel), $|a|$ bestimmt die Schlankheit</li>
+    </ul>
+    <p><strong>Scheitelpunkt bleibt immer $S(0 \mid 0)$</strong> – egal wie groß oder klein $a$ ist.</p>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Vergleich verschiedener Streckfaktoren</h4>
+    <table class="vals">
+      <tr><th>$x$</th><th>$f(x)=x^2$</th><th>$g(x)=2x^2$</th><th>$h(x)=\tfrac{1}{2}x^2$</th><th>$k(x)=-x^2$</th></tr>
+      <tr><td>$-2$</td><td>$4$</td><td>$8$</td><td>$2$</td><td>$-4$</td></tr>
+      <tr><td>$-1$</td><td>$1$</td><td>$2$</td><td>$0{,}5$</td><td>$-1$</td></tr>
+      <tr><td>$0$</td><td>$0$</td><td>$0$</td><td>$0$</td><td>$0$</td></tr>
+      <tr><td>$1$</td><td>$1$</td><td>$2$</td><td>$0{,}5$</td><td>$-1$</td></tr>
+      <tr><td>$2$</td><td>$4$</td><td>$8$</td><td>$2$</td><td>$-4$</td></tr>
+    </table>
+    <h4>Merkhilfe</h4>
+    <p class="rule"><span class="name">Großes |a|:</span> Parabel schmal (steil) → „a groß = aufgeregt, schmal"</p>
+    <p class="rule"><span class="name">Kleines |a| (nahe 0):</span> Parabel flach (breit) → „a klein = entspannt, breit"</p>
+    <p class="rule"><span class="name">Negatives a:</span> Öffnung nach unten → Scheitelpunkt ist <em>Maximum</em>, kein Minimum</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Graph von $f(x) = a \cdot x^2$ skizzieren</div>
+    <ol>
+      <li>Vorzeichen von $a$ bestimmen: Öffnung nach oben ($a \gt 0$) oder unten ($a \lt 0$)?</li>
+      <li>Betrag $|a|$ bestimmen: schlanker ($|a| \gt 1$) oder breiter ($|a| \lt 1$) als Normalparabel?</li>
+      <li>Scheitelpunkt $S(0\mid 0)$ einzeichnen.</li>
+      <li>Einige Punkte berechnen (z.B. $x = \pm 1, \pm 2$) und eintragen.</li>
+      <li>Kurve smooth durch die Punkte ziehen.</li>
+    </ol>
+  </div>
+
+  <div class="merke"><strong>Merke:</strong> Nur der Streckfaktor $a$ verändert die Form der Parabel. Scheitelpunkt und Symmetrieachse ($x=0$) bleiben bei $f(x) = a \cdot x^2$ immer unverändert. Das ändert sich erst, wenn wir in Kap. 2.3 und 2.4 anfangen zu verschieben.</div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Vergleiche $f(x) = x^2$ und $g(x) = \tfrac{1}{4}x^2$ an den Stellen $x = 2$ und $x = -2$. Was sagt der Vergleich über die Form der Parabeln aus?<br><br>
+  <strong>Schritt 1 – Werte berechnen:</strong><br>
+  $f(2) = 4$, $\;f(-2) = 4$ &nbsp;|&nbsp; $g(2) = \tfrac{1}{4} \cdot 4 = 1$, $\;g(-2) = 1$<br><br>
+  <strong>Schritt 2 – Vergleich:</strong> Bei $x = 2$ liegt $f$ bei $y=4$, $g$ nur bei $y=1$. Das heißt: $g$ steigt viel langsamer an. Die Parabel $g$ ist viermal flacher als $f$ – weil $a=\tfrac{1}{4}$ ist.<br><br>
+  <strong>Schritt 3 – Bedeutung für den Graphen:</strong> Um auf $g$ den y-Wert $4$ zu erreichen, muss ich weiter von der Achse weg: $g(x)=4 \Rightarrow \tfrac{1}{4}x^2 = 4 \Rightarrow x^2 = 16 \Rightarrow x = \pm 4$. Bei $f$ war das schon bei $x = \pm 2$ der Fall. $g$ ist also doppelt so breit.</div>
+
+  <div class="task">
+    <span class="tnum">A 3</span><span class="ttitle">Streckfaktor ablesen</span>
+    <p class="q">Welche der folgenden Parabeln ist am schlanksten, welche am breitesten? Begründe ohne Rechnung.<br>
+    (a) $f(x) = 3x^2$ &nbsp; (b) $g(x) = \frac{1}{4}x^2$ &nbsp; (c) $h(x) = 0{,}8 \cdot x^2$ &nbsp; (d) $k(x) = -5x^2$</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Schau dir den Betrag des Streckfaktors $|a|$ an. Je größer $|a|$, desto schlanker die Parabel. Das Vorzeichen gibt nur die Öffnungsrichtung an, hat aber keinen Einfluss auf die Breite.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Beträge der Streckfaktoren ablesen.</span></p>
+      <p class="step-work">$|a_f| = 3$, $\quad |a_g| = 0{,}25$, $\quad |a_h| = 0{,}8$, $\quad |a_k| = 5$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Sortieren nach Schlankheit.</span></p>
+      <p class="step-work">Reihenfolge (breit → schmal): $g$ (0,25) → $h$ (0,8) → $f$ (3) → $k$ (5)</p>
+      <p class="note warn">Achtung: $k(x) = -5x^2$ öffnet nach unten, ist aber trotzdem am schlanksten (|a|=5 ist am größten).</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p><strong>Schlankste Parabel:</strong> $k(x) = -5x^2$ (|a|=5), <strong>breiteste:</strong> $g(x) = \frac{1}{4}x^2$ (|a|=0,25).</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 4</span><span class="ttitle">Parabel bestimmen</span>
+    <p class="q">Eine Parabel der Form $f(x) = a \cdot x^2$ geht durch den Punkt $P(2 \mid 12)$. Bestimme den Streckfaktor $a$ und gib die Funktionsgleichung an.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Setze die Koordinaten des Punktes $P$ in $f(x) = a \cdot x^2$ ein: $f(2) = 12$. Löse dann nach $a$ auf.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Punkt einsetzen.</span></p>
+      <p class="step-work">$f(2) = a \cdot 2^2 = 4a = 12$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Nach a auflösen.</span></p>
+      <p class="step-work">$a = \dfrac{12}{4} = 3$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Probe.</span></p>
+      <p class="step-work">$f(2) = 3 \cdot 4 = 12$ ✓</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$a = 3$, also $f(x) = 3x^2$.</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> Bisher haben wir nur $a$ variiert – der Scheitelpunkt blieb immer im Ursprung. In Kapitel 2.3 schieben wir die Parabel entlang der y-Achse.</div>
+</section>
+
+<!-- ===================== 2.3 ===================== -->
+<section class="topic" id="k23">
+  <div class="kicker">Kapitel 2.3</div>
+  <h2>Verschieben in y-Richtung</h2>
+  <p class="explain">Wir fügen dem Term $x^2$ eine Konstante $e$ hinzu. Dadurch verschieben wir die gesamte Parabel nach oben oder unten – ohne ihre Form zu verändern. Das ist wie ein "Aufzug": die Parabel bleibt gleich aussehend, fährt aber hoch oder runter.</p>
+
+  <p class="explain">Wichtig: Das Addieren einer Konstante beeinflusst <em>jeden</em> Punkt gleich. Bei $x=3$ war $f(3)=9$; bei $g(x)=x^2-4$ ist $g(3)=9-4=5$. Bei $x=-1$ war $f(-1)=1$; bei $g$ ist $g(-1)=1-4=-3$. Überall wird $4$ subtrahiert. Deshalb rutscht die gesamte Parabel gleichmäßig 4 Einheiten nach unten – die Form, Symmetrie und Breite bleiben exakt gleich.</p>
+
+  <p class="explain">Besonders interessant: Durch das Verschieben nach unten ($e \lt 0$) taucht die Parabel unter die x-Achse, und es entstehen plötzlich zwei Nullstellen – Schnittpunkte mit der x-Achse, die vorher nicht existierten. Durch Verschieben nach oben ($e \gt 0$) hebt sich die Parabel über die x-Achse, und die Nullstellen verschwinden. Der Scheitelpunkt gibt also direkt an, ob es Nullstellen gibt: Liegt er unter der x-Achse ($e \lt 0$) → zwei Nullstellen; genau auf ihr ($e = 0$) → eine; darüber ($e \gt 0$) → keine.</p>
+
+  <div class="idee"><strong>Analogie – Meeresspiegel:</strong> Stell dir die Normalparabel als einen Berggrat. Steigt der Meeresspiegel (= $e$ wird größer), tauchen die Täler (Nullstellen) unter Wasser und verschwinden. Fällt der Meeresspiegel (= $e$ wird kleiner, negativ), ragen die Flanken des Berges links und rechts aus dem Wasser heraus – das sind die zwei Nullstellen.</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Bei $f(x) = x^2 + e$ wird zu jedem y-Wert der Normalparabel die Zahl $e$ addiert. Die ganze Parabel hebt sich (für $e \gt 0$) oder senkt sich (für $e \lt 0$).</div>
+
+  <div class="wissen">
+    <h4>Wissen: $f(x) = x^2 + e$</h4>
+    <ul>
+      <li><strong>Scheitelpunkt:</strong> $S(0 \mid e)$ – der Scheitel liegt auf der y-Achse, aber nicht mehr im Ursprung</li>
+      <li><strong>Symmetrieachse:</strong> $x = 0$ (y-Achse) – unverändert</li>
+      <li>$e \gt 0$: Parabel nach <em>oben</em> verschoben</li>
+      <li>$e \lt 0$: Parabel nach <em>unten</em> verschoben</li>
+      <li><strong>Nullstellen:</strong> Existieren nur, wenn $e \leq 0$. Dann: $x^2 = -e \Rightarrow x = \pm\sqrt{-e}$</li>
+    </ul>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Formeln</h4>
+    <p class="rule"><span class="name">Funktionsterm:</span> $f(x) = x^2 + e$</p>
+    <p class="rule"><span class="name">Scheitelpunkt:</span> $S(0 \mid e)$</p>
+    <p class="rule"><span class="name">Nullstellen (nur für $e \leq 0$):</span> $x_{1,2} = \pm\sqrt{-e}$</p>
+    <h4>Beispiele für Nullstellen</h4>
+    <p class="rule">$f(x) = x^2 - 9$: $\;x^2 = 9 \Rightarrow x = \pm 3$ (zwei Nullstellen)</p>
+    <p class="rule">$f(x) = x^2$: $\;e=0$, eine Nullstelle bei $x=0$ (Scheitelpunkt berührt x-Achse)</p>
+    <p class="rule">$f(x) = x^2 + 4$: $\;e=4 \gt 0$, keine Nullstellen (Parabel liegt ganz oberhalb der x-Achse)</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Nullstellen von $f(x) = x^2 + e$ bestimmen</div>
+    <ol>
+      <li>Setze $f(x) = 0$: $\quad x^2 + e = 0$</li>
+      <li>Umformen: $\quad x^2 = -e$</li>
+      <li>Falls $-e \lt 0$ (d.h. $e \gt 0$): keine reellen Nullstellen.</li>
+      <li>Falls $-e = 0$ (d.h. $e = 0$): genau eine Nullstelle $x = 0$.</li>
+      <li>Falls $-e \gt 0$ (d.h. $e \lt 0$): zwei Nullstellen $x_{1,2} = \pm\sqrt{-e}$.</li>
+    </ol>
+  </div>
+
+  <div class="merke"><strong>Merke:</strong> Das Vorzeichen von $e$ entscheidet über Lage UND Nullstellen. Bei $e \gt 0$ liegt die Parabel komplett über der x-Achse → keine Nullstellen. Bei $e \lt 0$ schneidet sie die x-Achse an zwei Stellen.</div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Gegeben $f(x) = x^2 - 7$. Beschreibe die Lage des Graphen und berechne die Nullstellen.<br><br>
+  <strong>Schritt 1 – Verschiebung erkennen:</strong> $e = -7 \lt 0$ → die Parabel liegt 7 Einheiten tiefer als die Normalparabel. Scheitelpunkt: $S(0 \mid {-7})$. Da der Scheitelpunkt unterhalb der x-Achse liegt, gibt es zwei Nullstellen.<br><br>
+  <strong>Schritt 2 – Nullstellen berechnen:</strong><br>
+  $x^2 - 7 = 0 \;\Rightarrow\; x^2 = 7 \;\Rightarrow\; x_{1,2} = \pm\sqrt{7} \approx \pm 2{,}65$<br><br>
+  <strong>Schritt 3 – Probe:</strong> $f(\sqrt{7}) = (\sqrt{7})^2 - 7 = 7 - 7 = 0$ ✓<br><br>
+  <strong>Visualisierung:</strong> Die Parabel geht durch $S(0\mid{-7})$, schneidet die x-Achse bei $x \approx \pm 2{,}65$ und öffnet nach oben. Für $x \gt \sqrt{7}$ oder $x \lt -\sqrt{7}$ ist $f(x) \gt 0$, dazwischen ist $f(x) \lt 0$.</div>
+
+  <div class="task">
+    <span class="tnum">A 5</span><span class="ttitle">Verschiebung beschreiben</span>
+    <p class="q">Beschreibe, wie sich der Graph von $g(x) = x^2 - 5$ vom Graphen der Normalparabel $f(x) = x^2$ unterscheidet. Gib Scheitelpunkt und Nullstellen an.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Vergleiche die Terme: $g(x) = x^2 + e$ mit $e = -5$. Was sagt $e$ über die Verschiebung aus? Für die Nullstellen: löse $g(x) = 0$.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Verschiebung bestimmen.</span></p>
+      <p class="step-work">$e = -5$: die Parabel wird um 5 Einheiten nach <em>unten</em> verschoben.</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Scheitelpunkt.</span></p>
+      <p class="step-work">$S(0 \mid -5)$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Nullstellen berechnen.</span></p>
+      <p class="step-work">$x^2 - 5 = 0 \;\Rightarrow\; x^2 = 5 \;\Rightarrow\; x_{1,2} = \pm\sqrt{5} \approx \pm 2{,}24$</p>
+      <p class="note">Da $e = -5 \lt 0$, schneidet die Parabel die x-Achse an zwei Stellen.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$g$ liegt 5 Einheiten tiefer als $f$. Scheitelpunkt: $S(0 \mid -5)$. Nullstellen: $x_{1,2} = \pm\sqrt{5}$.</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 6</span><span class="ttitle">Parabel ohne Nullstellen</span>
+    <p class="q">Für welche Werte von $e$ hat die Parabel $f(x) = x^2 + e$ keine reellen Nullstellen? Für welche genau eine?</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Nullstellen existieren, wenn $x^2 = -e$ eine Lösung hat, d.h. wenn $-e \geq 0$. Wann ist das der Fall?</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Bedingung für Nullstellen.</span></p>
+      <p class="step-work">$x^2 = -e$ hat eine reelle Lösung, wenn $-e \geq 0$, also wenn $e \leq 0$.</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Kein Nullstellen.</span></p>
+      <p class="step-work">Für $e \gt 0$: $-e \lt 0$, Quadratwurzel nicht definiert → keine Nullstellen.</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Genau eine Nullstelle.</span></p>
+      <p class="step-work">Für $e = 0$: $x^2 = 0 \Rightarrow x = 0$ (eine Nullstelle, Scheitelpunkt liegt auf der x-Achse).</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>Keine Nullstellen für $e \gt 0$. Genau eine Nullstelle für $e = 0$. Zwei Nullstellen für $e \lt 0$.</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> Bisher haben wir die Parabel nur senkrecht verschoben. In Kapitel 2.4 verschieben wir sie waagerecht – also in x-Richtung. Diese Verschiebung hat eine subtile Besonderheit im Term, auf die du aufpassen musst!</div>
+</section>
+
+<!-- ===================== 2.4 ===================== -->
+<section class="topic" id="k24">
+  <div class="kicker">Kapitel 2.4</div>
+  <h2>Verschieben in x-Richtung</h2>
+  <p class="explain">Jetzt verschieben wir die Parabel nach links oder rechts. Die Schreibweise im Funktionsterm ist dabei etwas kontraintuitiv: $(x-d)^2$ verschiebt nach rechts, obwohl ein Minus vor $d$ steht. Das ist eine häufige Fehlerquelle – hier ist besondere Aufmerksamkeit gefragt!</p>
+
+  <p class="explain">Warum ist das Vorzeichen "verkehrt herum"? Die Frage "Wo ist der Scheitelpunkt?" ist gleichbedeutend mit "Wo hat der Klammerausdruck den Wert 0?" Denn $(x-d)^2 \geq 0$ und gleich 0 genau bei $x = d$. Wenn wir also $(x-3)^2$ schreiben, ist der Klammerausdruck $x-3$ genau dann 0, wenn $x=3$ – das ist der Scheitelpunkt. Das Minus ist also kein Fehler, sondern mathematisch notwendig, damit der Scheitelpunkt bei $x=+3$ liegt.</p>
+
+  <p class="explain">Ein weiteres Bild: Die Verschiebung in x-Richtung ist wie ein <em>zeitlicher Versatz</em>. Wenn ein Ereignis normalerweise bei $t=0$ seinen Höhepunkt hat (Scheitel der Normalparabel), aber 3 Sekunden später startet, dann beschreibt $(t-3)^2$ den Verlauf: Erst bei $t=3$ hat es seinen tiefsten Punkt – 3 Sekunden später als gewöhnlich.</p>
+
+  <div class="idee"><strong>Analogie – Zeitversatz:</strong> Stell dir einen Springbrunnen, der seinen Wasserstrahl nach einer Parabel wirft. Wenn du den Brunnen 5 Meter nach rechts verschiebst, ändert sich die Form des Strahls nicht – aber alles passiert jetzt 5 Meter weiter rechts. Genau das tut $(x-5)^2$: Es ist die Normalparabel, aber ihr Scheitelpunkt liegt bei $x=5$ statt bei $x=0$.</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Um die Nullstelle (den Scheitelpunkt) von $x=0$ nach $x=d$ zu verschieben, ersetzen wir $x$ durch $(x-d)$. Das heißt: Die Funktion nimmt jetzt erst bei $x=d$ den Wert 0 an.</div>
+
+  <div class="wissen">
+    <h4>Wissen: $f(x) = (x-d)^2$</h4>
+    <ul>
+      <li><strong>Scheitelpunkt:</strong> $S(d \mid 0)$</li>
+      <li><strong>Symmetrieachse:</strong> $x = d$</li>
+      <li>$d \gt 0$: Parabel nach <em>rechts</em> verschoben</li>
+      <li>$d \lt 0$: Parabel nach <em>links</em> verschoben</li>
+      <li><strong>Nullstelle:</strong> $x = d$ (genau eine, da Scheitelpunkt auf der x-Achse)</li>
+    </ul>
+  </div>
+
+  <div class="achtung"><strong>Achtung – häufiger Fehler!</strong> $f(x) = (x-3)^2$ hat den Scheitelpunkt bei $x = +3$ (nicht $-3$!). Das Minus im Term bedeutet: die Parabel ist nach rechts verschoben. Und $g(x) = (x+2)^2 = (x-(-2))^2$ hat den Scheitelpunkt bei $x = -2$ (nach links).</div>
+
+  <div class="cheatsheet">
+    <h4>Merkhilfe für die Vorzeichen-Falle</h4>
+    <p class="rule"><span class="name">$(x - 3)^2$:</span> wird 0 bei $x = 3$ → Scheitelpunkt rechts von der y-Achse</p>
+    <p class="rule"><span class="name">$(x + 3)^2 = (x-(-3))^2$:</span> wird 0 bei $x = -3$ → Scheitelpunkt links von der y-Achse</p>
+    <p class="rule"><span class="name">Faustformel:</span> Setze den Klammerausdruck gleich 0 und löse nach $x$. Das gibt die x-Koordinate des Scheitelpunkts.</p>
+    <h4>Formeln</h4>
+    <p class="rule"><span class="name">Scheitelpunkt:</span> $S(d \mid 0)$</p>
+    <p class="rule"><span class="name">Symmetrieachse:</span> $x = d$</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Scheitelpunkt aus $(x-d)^2$ ablesen</div>
+    <ol>
+      <li>Schreibe den Term in der Form $(x - d)^2$.</li>
+      <li>Setze den Klammerinhalt gleich 0: $x - d = 0$.</li>
+      <li>Löse: $x = d$ → das ist die x-Koordinate des Scheitelpunkts.</li>
+      <li>Scheitelpunkt: $S(d \mid 0)$, Symmetrieachse: $x = d$.</li>
+    </ol>
+  </div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Skizziere $f(x) = (x-2)^2$ durch Wertetabelle und erkläre, warum der Scheitelpunkt bei $x=2$ liegt.<br><br>
+  <strong>Schritt 1 – Parameter ablesen:</strong> $d = 2$, Scheitelpunkt $S(2 \mid 0)$, Sym.-achse $x=2$.<br><br>
+  <strong>Schritt 2 – Wertetabelle (Mittelpunkt bei $x=2$!):</strong><br>
+  Wähle Werte symmetrisch um $x=2$: also $x = 0, 1, 2, 3, 4$.<br>
+  $f(0)=(0-2)^2=4$, $\;f(1)=(1-2)^2=1$, $\;f(2)=0$, $\;f(3)=1$, $\;f(4)=4$<br><br>
+  <strong>Schritt 3 – Vergleich mit Normalparabel:</strong> Die Wertetabelle sieht aus wie die der Normalparabel – aber verschoben! Bei der Normalparabel: $f(0)=0, f(\pm1)=1, f(\pm2)=4$. Hier: $f(2)=0, f(1)=f(3)=1, f(0)=f(4)=4$. Die gesamte Tabelle ist um 2 nach rechts gerückt.<br><br>
+  <strong>Erklärung:</strong> $(x-2)^2 = 0$ genau dann, wenn $x-2=0$, also $x=2$. Deshalb liegt der Scheitelpunkt (tiefster Punkt) bei $x=2$.</div>
+
+  <div class="task">
+    <span class="tnum">A 7</span><span class="ttitle">Scheitelpunkt ablesen</span>
+    <p class="q">Gib für jede Funktion den Scheitelpunkt und die Symmetrieachse an, ohne zu rechnen:<br>
+    (a) $f(x) = (x-4)^2$ &nbsp; (b) $g(x) = (x+3)^2$ &nbsp; (c) $h(x) = (x-0{,}5)^2$</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Schreibe jede Funktion in der Form $(x-d)^2$. Für (b): $g(x) = (x - (-3))^2$, also $d = -3$.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Funktion (a).</span></p>
+      <p class="step-work">$f(x) = (x-4)^2$: $d = 4$ → $S(4 \mid 0)$, Sym.-achse $x = 4$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Funktion (b).</span></p>
+      <p class="step-work">$g(x) = (x+3)^2 = (x-(-3))^2$: $d = -3$ → $S(-3 \mid 0)$, Sym.-achse $x = -3$</p>
+      <p class="note warn">Achtung: $(x+3)^2$ bedeutet Verschiebung nach LINKS, nicht rechts!</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Funktion (c).</span></p>
+      <p class="step-work">$h(x) = (x-0{,}5)^2$: $d = 0{,}5$ → $S(0{,}5 \mid 0)$, Sym.-achse $x = 0{,}5$</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>(a) $S(4\mid 0)$, $x=4$ &nbsp;|&nbsp; (b) $S(-3\mid 0)$, $x=-3$ &nbsp;|&nbsp; (c) $S(0{,}5\mid 0)$, $x=0{,}5$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 8</span><span class="ttitle">Parabel aufstellen</span>
+    <p class="q">Schreibe eine Funktion der Form $f(x) = (x-d)^2$, deren Graph die Normalparabel um 3 Einheiten nach links verschoben hat. Welchen Scheitelpunkt hat die Funktion?</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Verschiebung nach links bedeutet $d \lt 0$. Genauer: Um 3 Einheiten nach links → $d = -3$.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Verschiebungsparameter einsetzen.</span></p>
+      <p class="step-work">3 Einheiten nach links: $d = -3$</p>
+      <p class="step-work">$f(x) = (x - (-3))^2 = (x+3)^2$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Scheitelpunkt.</span></p>
+      <p class="step-work">$S(-3 \mid 0)$</p>
+      <p class="note">Probe: $f(-3) = (-3+3)^2 = 0^2 = 0$ ✓ – der Scheitelpunkt liegt bei $(-3, 0)$.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$f(x) = (x+3)^2$, Scheitelpunkt $S(-3 \mid 0)$.</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> Bisher haben wir $a$, $e$ und $d$ einzeln betrachtet. In Kapitel 2.5 kombinieren wir alles in der <strong>Scheitelpunktform</strong> $f(x) = a(x-d)^2 + e$ – der mächtigsten Form der quadratischen Funktion.</div>
+</section>
+
+<!-- ===================== 2.5 ===================== -->
+<section class="topic" id="k25">
+  <div class="kicker">Kapitel 2.5</div>
+  <h2>Die Scheitelpunktform</h2>
+  <p class="explain">Die Scheitelpunktform $f(x) = a(x-d)^2 + e$ vereinigt alle drei Parameter: $a$ (Form/Öffnung), $d$ (x-Verschiebung), $e$ (y-Verschiebung). Sie ist besonders praktisch, weil man den Scheitelpunkt direkt ablesen kann, ohne zu rechnen. Diese Form ist zentral für die gesamte Analysis quadratischer Funktionen.</p>
+
+  <p class="explain">Man kann sich die Scheitelpunktform als eine schrittweise Transformation der Normalparabel vorstellen. Zuerst streckt/staucht $a$ die Parabel (und kippt sie ggf. um), dann verschiebt $(x-d)$ sie horizontal und $+e$ vertikal. Diese drei Operationen sind unabhängig voneinander – man kann sie in beliebiger Reihenfolge "lesen". Das macht die Scheitelpunktform so mächtig: Alle geometrischen Eigenschaften stecken sichtbar im Term.</p>
+
+  <p class="explain">Ein häufiges Missverständnis: "Je mehr Parameter, desto komplizierter." Tatsächlich ist die Scheitelpunktform <em>einfacher</em> als die allgemeine Form, weil man den Scheitelpunkt sofort ablesen kann. Bei $f(x) = 3(x-2)^2 - 5$ sieht man auf einen Blick: Scheitel bei $(2, -5)$, schlanke Parabel (a=3), öffnet nach oben. Bei der allgemeinen Form $f(x) = 3x^2 - 12x + 7$ muss man erst rechnen, um das herauszufinden.</p>
+
+  <div class="idee"><strong>Analogie – GPS-Koordinaten:</strong> Genau wie GPS-Koordinaten einen Ort auf der Erde eindeutig beschreiben (Breite, Länge, Höhe), beschreiben die drei Parameter $(a, d, e)$ eine Parabel eindeutig: $a$ = Steifigkeit/Öffnung, $d$ = horizontale Lage, $e$ = vertikale Lage. Jede Parabel hat genau einen solchen "GPS-Code".</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Wir starten mit der Normalparabel, strecken/stauchen sie mit $a$, verschieben sie um $d$ in x-Richtung und um $e$ in y-Richtung. Das Ergebnis ist immer eine Parabel mit Scheitelpunkt $S(d \mid e)$.</div>
+
+  <div class="wissen">
+    <h4>Wissen: Die Scheitelpunktform</h4>
+    $$f(x) = a(x-d)^2 + e$$
+    <ul>
+      <li><strong>Scheitelpunkt:</strong> $S(d \mid e)$ – direkt ablesbar!</li>
+      <li><strong>Symmetrieachse:</strong> $x = d$</li>
+      <li><strong>Streckfaktor $a$:</strong> bestimmt Öffnungsrichtung und Schlankheit</li>
+      <li>$a \gt 0$: Tiefpunkt (Minimum) im Scheitelpunkt; $a \lt 0$: Hochpunkt (Maximum)</li>
+    </ul>
+    <h4>Nullstellen aus der Scheitelpunktform</h4>
+    <p>Setze $f(x) = 0$ und löse schrittweise:</p>
+    $$a(x-d)^2 + e = 0 \;\Rightarrow\; (x-d)^2 = -\frac{e}{a} \;\Rightarrow\; x = d \pm \sqrt{-\frac{e}{a}}$$
+    <p>Nullstellen existieren nur, wenn $-\dfrac{e}{a} \geq 0$.</p>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Schnellübersicht: Parameter und ihre Bedeutung</h4>
+    <p class="rule"><span class="name">$a \gt 0$:</span> Parabel öffnet nach oben, Scheitelpunkt ist Minimum</p>
+    <p class="rule"><span class="name">$a \lt 0$:</span> Parabel öffnet nach unten, Scheitelpunkt ist Maximum</p>
+    <p class="rule"><span class="name">$|a|$ groß:</span> schmal; $|a|$ klein: breit</p>
+    <p class="rule"><span class="name">$d \gt 0$:</span> Scheitelpunkt rechts der y-Achse; $d \lt 0$: links</p>
+    <p class="rule"><span class="name">$e \gt 0$:</span> Scheitelpunkt über der x-Achse; $e \lt 0$: darunter</p>
+    <h4>Bedingung für Nullstellen</h4>
+    <p class="rule">Zwei Nullstellen: $-e/a \gt 0$ &nbsp;|&nbsp; Eine Nullstelle: $e = 0$ &nbsp;|&nbsp; Keine: $-e/a \lt 0$</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Nullstellen aus Scheitelpunktform berechnen</div>
+    <ol>
+      <li>Setze $f(x) = 0$: $\quad a(x-d)^2 + e = 0$</li>
+      <li>Subtrahiere $e$: $\quad a(x-d)^2 = -e$</li>
+      <li>Dividiere durch $a$: $\quad (x-d)^2 = -\dfrac{e}{a}$</li>
+      <li>Prüfe: Ist $-e/a \geq 0$? Falls nein → keine reellen Nullstellen.</li>
+      <li>Ziehe Wurzel: $\quad x - d = \pm\sqrt{-\dfrac{e}{a}}$</li>
+      <li>Addiere $d$: $\quad x_{1,2} = d \pm \sqrt{-\dfrac{e}{a}}$</li>
+    </ol>
+  </div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Vollständige Analyse von $f(x) = -3(x+1)^2 + 12$.<br><br>
+  <strong>Schritt 1 – Parameter erkennen (Achtung Vorzeichen!):</strong><br>
+  $f(x) = -3(x - (-1))^2 + 12$, also $a=-3$, $d=-1$, $e=12$.<br><br>
+  <strong>Schritt 2 – Grundeigenschaften:</strong><br>
+  Scheitelpunkt: $S(-1 \mid 12)$ &nbsp;|&nbsp; Sym.-achse: $x = -1$<br>
+  $a = -3 \lt 0$ → Parabel öffnet nach <em>unten</em>, Scheitelpunkt ist <em>Maximum</em>.<br>
+  $|a| = 3$ → schlanker als Normalparabel.<br><br>
+  <strong>Schritt 3 – Nullstellen:</strong><br>
+  $-3(x+1)^2 + 12 = 0$<br>
+  $(x+1)^2 = 4$<br>
+  $x+1 = \pm 2$<br>
+  $x_1 = 1$, $\;x_2 = -3$<br><br>
+  <strong>Schritt 4 – y-Achsenabschnitt ($x=0$ einsetzen):</strong><br>
+  $f(0) = -3(1)^2 + 12 = -3 + 12 = 9$<br><br>
+  <strong>Probe Nullstellen:</strong> $f(1) = -3(2)^2 + 12 = -12 + 12 = 0$ ✓ &nbsp; $f(-3) = -3(-2)^2 + 12 = -12 + 12 = 0$ ✓</div>
+
+  <div class="task">
+    <span class="tnum">A 9</span><span class="ttitle">Scheitelpunkt und Nullstellen</span>
+    <p class="q">Gegeben: $f(x) = 2(x-3)^2 - 8$. Bestimme: (a) Scheitelpunkt, (b) Öffnungsrichtung, (c) Nullstellen.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Vergleiche mit $a(x-d)^2 + e$: Was sind $a$, $d$ und $e$? Der Scheitelpunkt ist $S(d \mid e)$. Für die Nullstellen: setze $f(x) = 0$ und forme um.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Parameter ablesen.</span></p>
+      <p class="step-work">$a = 2$, $d = 3$, $e = -8$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Scheitelpunkt.</span></p>
+      <p class="step-work">$S(3 \mid -8)$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Öffnungsrichtung.</span></p>
+      <p class="step-work">$a = 2 \gt 0$ → Parabel öffnet nach oben, Scheitelpunkt ist Minimum.</p>
+      <p class="step-row"><span class="step-label">4</span><span class="step-title">Nullstellen berechnen.</span></p>
+      <p class="step-work">$2(x-3)^2 - 8 = 0$</p>
+      <p class="step-work">$(x-3)^2 = 4$</p>
+      <p class="step-work">$x - 3 = \pm 2$</p>
+      <p class="step-work">$x_1 = 3 + 2 = 5$, $\quad x_2 = 3 - 2 = 1$</p>
+      <p class="note">Probe: $f(5) = 2(2)^2 - 8 = 8 - 8 = 0$ ✓ &nbsp; $f(1) = 2(-2)^2 - 8 = 0$ ✓</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>(a) $S(3 \mid -8)$ &nbsp;|&nbsp; (b) nach oben &nbsp;|&nbsp; (c) $x_1 = 5$, $x_2 = 1$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 10</span><span class="ttitle">Scheitelpunktform aufstellen</span>
+    <p class="q">Eine Parabel hat den Scheitelpunkt $S(-2 \mid 5)$ und geht durch den Punkt $P(0 \mid 13)$. Stelle die Funktionsgleichung in Scheitelpunktform auf.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Schreibe den Ansatz $f(x) = a(x-d)^2 + e$ mit $d = -2$ und $e = 5$. Setze dann den Punkt $P(0 \mid 13)$ ein, um $a$ zu bestimmen.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Ansatz mit bekannten Parametern.</span></p>
+      <p class="step-work">$f(x) = a(x-(-2))^2 + 5 = a(x+2)^2 + 5$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Punkt P einsetzen.</span></p>
+      <p class="step-work">$f(0) = 13$: $\quad a \cdot (0+2)^2 + 5 = 13$</p>
+      <p class="step-work">$4a + 5 = 13 \;\Rightarrow\; 4a = 8 \;\Rightarrow\; a = 2$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Gleichung aufschreiben.</span></p>
+      <p class="step-work">$f(x) = 2(x+2)^2 + 5$</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$f(x) = 2(x+2)^2 + 5$</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> In Kapitel 2.6 lernst du die <strong>allgemeine Form</strong> $f(x) = ax^2 + bx + c$ kennen. Diese sieht auf den ersten Blick komplizierter aus – enthält aber dieselbe Information wie die Scheitelpunktform. Außerdem lernst du, wie man eine Parabel aus drei gegebenen Punkten rekonstruiert.</div>
+</section>
+
+<!-- ===================== 2.6 ===================== -->
+<section class="topic" id="k26">
+  <div class="kicker">Kapitel 2.6</div>
+  <h2>Die allgemeine und faktorisierte Form</h2>
+  <p class="explain">Wenn man eine Parabel durch Ausmultiplizieren der Scheitelpunktform umschreibt, erhält man die allgemeine Form $ax^2 + bx + c$. Diese Form taucht überall auf – in Textaufgaben, beim Aufstellen von Gleichungen aus Punkten, und in der pq-Formel. Daneben gibt es die faktorisierte Form, die die Nullstellen direkt zeigt.</p>
+
+  <p class="explain">Die drei Formen der quadratischen Funktion enthalten alle dieselbe Information – sie betonen aber jeweils etwas anderes. Die <strong>allgemeine Form</strong> $ax^2+bx+c$ zeigt sofort den y-Achsenabschnitt ($c$) und ist die Form, die beim Ausmultiplizieren entsteht. Die <strong>Scheitelpunktform</strong> zeigt sofort den Scheitelpunkt. Die <strong>faktorisierte Form</strong> $a(x-x_1)(x-x_2)$ zeigt sofort die Nullstellen. Je nach Aufgabenstellung wechselt man zwischen den Formen. Das ist wie mit verschiedenen Sprachen: Man sagt dieselbe Sache, nur in unterschiedlichen "Dialekten".</p>
+
+  <p class="explain">Das Aufstellen einer Parabel aus drei Punkten ist ein klassisches Problem, das auf ein lineares Gleichungssystem führt. Dabei macht man sich zunutze, dass $f(x) = ax^2 + bx + c$ drei freie Parameter hat, die durch drei Punktbedingungen eindeutig festgelegt werden. Besonders einfach wird es, wenn einer der drei Punkte auf der y-Achse liegt (also $x=0$), weil dann sofort $c$ bekannt ist.</p>
+
+  <div class="wissen">
+    <h4>Wissen: Die drei Formen</h4>
+    <div class="grid2">
+      <div>
+        <p><strong>Allgemeine Form:</strong></p>
+        $$f(x) = ax^2 + bx + c$$
+        <p>$c = f(0)$ ist der y-Achsenabschnitt.</p>
+      </div>
+      <div>
+        <p><strong>Faktorisierte Form:</strong></p>
+        $$f(x) = a(x - x_1)(x - x_2)$$
+        <p>$x_1, x_2$ sind die Nullstellen (falls vorhanden).</p>
+      </div>
+    </div>
+    <p><strong>Scheitelpunktform</strong> (bekannt): $f(x) = a(x-d)^2 + e$</p>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Allgemeine Form → Informationen ablesen</h4>
+    <p class="rule"><span class="name">$a$:</span> Streckfaktor und Öffnungsrichtung (wie immer)</p>
+    <p class="rule"><span class="name">$c = f(0)$:</span> y-Achsenabschnitt – direkt ablesbar!</p>
+    <p class="rule"><span class="name">$b$:</span> hat keinen einfachen geometrischen Sinn, beeinflusst aber die Lage des Scheitelpunkts</p>
+    <h4>Faktorisierte Form → Informationen ablesen</h4>
+    <p class="rule"><span class="name">Nullstellen:</span> $x_1$ und $x_2$ direkt ablesbar</p>
+    <p class="rule"><span class="name">Scheitelpunkt x-Koordinate:</span> $d = \dfrac{x_1 + x_2}{2}$ (Mittelpunkt der Nullstellen)</p>
+    <h4>Parabel aus 3 Punkten bestimmen</h4>
+    <p class="rule">Ansatz $f(x) = ax^2 + bx + c$, drei Punkte einsetzen → LGS mit 3 Unbekannten ($a$, $b$, $c$)</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Parabel aus 3 Punkten aufstellen</div>
+    <ol>
+      <li>Ansatz: $f(x) = ax^2 + bx + c$</li>
+      <li>Drei bekannte Punkte $P_1(x_1 \mid y_1)$, $P_2$, $P_3$ einzeln einsetzen.</li>
+      <li>Erhält man drei Gleichungen mit drei Unbekannten $a$, $b$, $c$.</li>
+      <li>LGS lösen (z.B. durch Gleichsetzen oder Einsetzen).</li>
+      <li>Ergebnisse in Ansatz einsetzen → fertige Gleichung.</li>
+      <li>Probe: Punkte in die fertige Gleichung einsetzen.</li>
+    </ol>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Faktorisierte Form aufstellen (bei bekannten Nullstellen)</div>
+    <ol>
+      <li>Nullstellen $x_1$ und $x_2$ bekannt (oder berechnet).</li>
+      <li>Ansatz: $f(x) = a(x - x_1)(x - x_2)$</li>
+      <li>Falls weiterer Punkt bekannt: einsetzen, um $a$ zu bestimmen.</li>
+      <li>Gleichung aufschreiben.</li>
+    </ol>
+  </div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Wandle $f(x) = 2(x-3)^2 + 1$ in die allgemeine Form um und lese den y-Achsenabschnitt ab.<br><br>
+  <strong>Schritt 1 – Klammer ausmultiplizieren:</strong><br>
+  $(x-3)^2 = x^2 - 6x + 9$<br><br>
+  <strong>Schritt 2 – Mit $a=2$ multiplizieren:</strong><br>
+  $2(x^2 - 6x + 9) = 2x^2 - 12x + 18$<br><br>
+  <strong>Schritt 3 – $+1$ addieren:</strong><br>
+  $f(x) = 2x^2 - 12x + 18 + 1 = 2x^2 - 12x + 19$<br><br>
+  <strong>y-Achsenabschnitt:</strong> $c = 19$, also $f(0) = 19$.<br>
+  <strong>Probe:</strong> $f(0) = 2(0-3)^2 + 1 = 2 \cdot 9 + 1 = 19$ ✓<br><br>
+  <strong>Welche Form wann?</strong> Wenn Scheitelpunkt gefragt → Scheitelpunktform. Wenn Nullstellen gefragt → pq-Formel auf allgemeine Form. Wenn y-Achsenabschnitt gefragt → direkt $c$ aus allgemeiner Form ablesen.</div>
+
+  <div class="task">
+    <span class="tnum">A 11</span><span class="ttitle">Parabel aus 3 Punkten</span>
+    <p class="q">Bestimme die Gleichung der Parabel $f(x) = ax^2 + bx + c$, die durch die Punkte $A(0 \mid 3)$, $B(1 \mid 6)$ und $C(-1 \mid 2)$ verläuft.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Setze alle drei Punkte in $f(x) = ax^2 + bx + c$ ein. Beachte: Für Punkt $A(0\mid 3)$ erhält man direkt $c = 3$ (da $f(0) = c$). Das vereinfacht das LGS.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Punkt A einsetzen.</span></p>
+      <p class="step-work">$f(0) = 3$: $\quad a \cdot 0 + b \cdot 0 + c = 3 \;\Rightarrow\; c = 3$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Punkt B einsetzen.</span></p>
+      <p class="step-work">$f(1) = 6$: $\quad a + b + 3 = 6 \;\Rightarrow\; a + b = 3 \quad$ (I)</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Punkt C einsetzen.</span></p>
+      <p class="step-work">$f(-1) = 2$: $\quad a - b + 3 = 2 \;\Rightarrow\; a - b = -1 \quad$ (II)</p>
+      <p class="step-row"><span class="step-label">4</span><span class="step-title">LGS lösen.</span></p>
+      <p class="step-work">(I) + (II): $\;2a = 2 \;\Rightarrow\; a = 1$</p>
+      <p class="step-work">Aus (I): $\;b = 3 - 1 = 2$</p>
+      <p class="step-row"><span class="step-label">5</span><span class="step-title">Gleichung aufschreiben und Probe.</span></p>
+      <p class="step-work">$f(x) = x^2 + 2x + 3$</p>
+      <p class="note">Probe: $f(1) = 1 + 2 + 3 = 6$ ✓ &nbsp; $f(-1) = 1 - 2 + 3 = 2$ ✓</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$f(x) = x^2 + 2x + 3$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 12</span><span class="ttitle">Faktorisierte Form</span>
+    <p class="q">Eine Parabel hat die Nullstellen $x_1 = -1$ und $x_2 = 4$ und geht durch den Punkt $P(0 \mid -8)$. Stelle die Gleichung in faktorisierter Form auf. Wie lautet die allgemeine Form?</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Ansatz: $f(x) = a(x-x_1)(x-x_2) = a(x+1)(x-4)$. Setze $P(0\mid -8)$ ein, um $a$ zu bestimmen. Dann multipliziere aus für die allgemeine Form.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Faktorisierte Form aufschreiben.</span></p>
+      <p class="step-work">$f(x) = a(x-(-1))(x-4) = a(x+1)(x-4)$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Punkt P einsetzen.</span></p>
+      <p class="step-work">$f(0) = -8$: $\quad a(0+1)(0-4) = -8$</p>
+      <p class="step-work">$a \cdot 1 \cdot (-4) = -8 \;\Rightarrow\; -4a = -8 \;\Rightarrow\; a = 2$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Faktorisierte Form.</span></p>
+      <p class="step-work">$f(x) = 2(x+1)(x-4)$</p>
+      <p class="step-row"><span class="step-label">4</span><span class="step-title">Allgemeine Form durch Ausmultiplizieren.</span></p>
+      <p class="step-work">$(x+1)(x-4) = x^2 - 4x + x - 4 = x^2 - 3x - 4$</p>
+      <p class="step-work">$f(x) = 2(x^2 - 3x - 4) = 2x^2 - 6x - 8$</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>Faktorisiert: $f(x) = 2(x+1)(x-4)$ &nbsp;|&nbsp; Allgemein: $f(x) = 2x^2 - 6x - 8$</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> In Kapitel 2.7 und 2.8 lernst du, wie man quadratische Gleichungen (also $f(x) = 0$) systematisch löst – mit einfachen Umformungen und der berühmten pq-Formel.</div>
+</section>
+
+<!-- ===================== 2.7 ===================== -->
+<section class="topic" id="k27">
+  <div class="kicker">Kapitel 2.7</div>
+  <h2>Einfache quadratische Gleichungen</h2>
+  <p class="explain">Nicht jede quadratische Gleichung braucht die pq-Formel. Viele lassen sich durch einfache Umformungen oder das Nullprodukt lösen. Diese Methoden sind schneller und fehlerunanfälliger – und wenn sie funktionieren, sollte man sie bevorzugen.</p>
+
+  <p class="explain">Warum gibt es überhaupt verschiedene Lösungsmethoden? Weil jede Methode für eine bestimmte Struktur der Gleichung besonders gut geeignet ist. Das Wurzelziehen klappt, wenn $b=0$ fehlt – dann hat man ein reines $x^2$ auf einer Seite. Der Nullproduktsatz klappt, wenn man die Gleichung als Produkt schreiben kann (faktorisierte Form). Die pq-Formel ist universell, aber auch aufwändiger. Wer die Struktur der Gleichung erkennt, wählt die schnellste Methode.</p>
+
+  <p class="explain">Geometrisch gesehen: Die Lösungen einer quadratischen Gleichung $f(x)=0$ sind die Nullstellen der Parabel – also die x-Werte, bei denen der Graph die x-Achse berührt oder schneidet. Dass es 0, 1 oder 2 Lösungen geben kann, sieht man sofort am Graphen: Liegt die Parabel vollständig über der x-Achse (kein Schnitt), berührt sie sie gerade (eine Lösung) oder schneidet sie sie (zwei Lösungen)?</p>
+
+  <div class="idee"><strong>Analogie – Schlüsselwahl:</strong> Wie ein Schlüsselbund verschiedene Schlüssel für verschiedene Schlösser hat, gibt es verschiedene Lösungsmethoden für verschiedene Gleichungstypen. Erst schaut man, welcher Schlüssel passt (Typ erkennen), dann dreht man durch (Methode anwenden). Die pq-Formel ist der "Universalschlüssel" – sie passt immer, ist aber manchmal unbequemer zu handhaben als der speziell zugeschnittene Schlüssel.</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Eine quadratische Gleichung hat die Form $ax^2 + bx + c = 0$. Wenn $b = 0$ fehlt, reichen Wurzelziehen und Fallunterscheidung. Wenn die Gleichung faktorisiert werden kann, hilft der Nullproduktsatz.</div>
+
+  <div class="wissen">
+    <h4>Wissen: Lösungsstrategien</h4>
+    <p><strong>Typ 1 – reines $x^2$:</strong> $ax^2 = c$</p>
+    $$x^2 = \frac{c}{a} \;\Rightarrow\; x_{1,2} = \pm\sqrt{\frac{c}{a}} \quad \text{(nur wenn } c/a \geq 0\text{)}$$
+    <p><strong>Typ 2 – Scheitelpunktform ohne e-Anteil:</strong> $a(x-d)^2 = c$</p>
+    $$x = d \pm \sqrt{\frac{c}{a}}$$
+    <p><strong>Typ 3 – Nullprodukt (faktorisiert):</strong> $a(x-x_1)(x-x_2) = 0$</p>
+    <p>Dann gilt: $x - x_1 = 0$ oder $x - x_2 = 0$, also $x_1$ oder $x_2$.</p>
+    <p><strong>Typ 4 – grafisch:</strong> Schnittpunkte des Graphen mit der x-Achse ablesen.</p>
+  </div>
+
+  <div class="merke"><strong>Nullproduktsatz:</strong> Ein Produkt ist genau dann gleich 0, wenn mindestens ein Faktor gleich 0 ist. Also: $A \cdot B = 0 \;\Rightarrow\; A = 0$ oder $B = 0$.</div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Welche Methode wählen?</div>
+    <ol>
+      <li>Hat die Gleichung die Form $ax^2 = c$? → Durch $a$ dividieren, Wurzel ziehen.</li>
+      <li>Steht links schon ein Produkt zweier Faktoren mit $x$? → Nullproduktsatz anwenden.</li>
+      <li>Kann man die linke Seite faktorisieren? → Faktorisieren, dann Nullproduktsatz.</li>
+      <li>Keine der obigen Methoden klappt? → pq-Formel (Kapitel 2.8).</li>
+    </ol>
+  </div>
+
+  <div class="beispiel"><strong>Musterbeispiel – Methodenvergleich:</strong> Löse $x^2 - 9 = 0$ auf drei verschiedene Arten.<br><br>
+  <strong>Methode 1 – Wurzelziehen:</strong><br>
+  $x^2 = 9 \;\Rightarrow\; x = \pm 3$<br><br>
+  <strong>Methode 2 – Faktorisieren mit Nullproduktsatz:</strong><br>
+  $x^2 - 9 = (x-3)(x+3) = 0$<br>
+  $x-3=0 \;\Rightarrow\; x_1=3$ &nbsp;|&nbsp; $x+3=0 \;\Rightarrow\; x_2=-3$<br>
+  (3. binomische Formel: $a^2 - b^2 = (a-b)(a+b)$)<br><br>
+  <strong>Methode 3 – Grafisch:</strong><br>
+  Die Parabel $f(x)=x^2$ schneidet die Linie $y=9$ bei $x=\pm3$ → Nullstellen von $f(x)-9$ bei $x=\pm3$.<br><br>
+  <strong>Fazit:</strong> Alle Methoden liefern $x_1=3$, $x_2=-3$. Für diesen Typ ($b=0$) ist Methode 1 am schnellsten.</div>
+
+  <div class="task">
+    <span class="tnum">A 13</span><span class="ttitle">Gleichung durch Wurzelziehen</span>
+    <p class="q">Löse die Gleichung: $3x^2 - 75 = 0$</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Bringe die Gleichung in die Form $x^2 = \ldots$ durch Addition und Division. Dann ziehe die Wurzel und beachte das ±.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichung umformen.</span></p>
+      <p class="step-work">$3x^2 = 75$</p>
+      <p class="step-work">$x^2 = 25$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Wurzel ziehen.</span></p>
+      <p class="step-work">$x = \pm\sqrt{25} = \pm 5$</p>
+      <p class="note">$x_1 = 5$, $x_2 = -5$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Probe.</span></p>
+      <p class="step-work">$3 \cdot 25 - 75 = 75 - 75 = 0$ ✓</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$x_1 = 5$, $x_2 = -5$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 14</span><span class="ttitle">Nullproduktsatz</span>
+    <p class="q">Löse: $2x(x - 7) = 0$ &nbsp; und &nbsp; $(x+3)(2x-10) = 0$</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Bei einem Produkt gleich 0: jeder Faktor einzeln gleich 0 setzen. Bei $(x+3)(2x-10)=0$: entweder $x+3=0$ oder $2x-10=0$.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">$2x(x-7) = 0$: Nullproduktsatz.</span></p>
+      <p class="step-work">$2x = 0 \;\Rightarrow\; x_1 = 0$</p>
+      <p class="step-work">$x - 7 = 0 \;\Rightarrow\; x_2 = 7$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">$(x+3)(2x-10) = 0$: Nullproduktsatz.</span></p>
+      <p class="step-work">$x + 3 = 0 \;\Rightarrow\; x_1 = -3$</p>
+      <p class="step-work">$2x - 10 = 0 \;\Rightarrow\; x_2 = 5$</p>
+      <p class="note warn">Achtung: Nie durch $x$ dividieren! Das würde eine Lösung verloren gehen. Stattdessen immer Nullproduktsatz anwenden.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$2x(x-7)=0$: $x_1=0$, $x_2=7$ &nbsp;|&nbsp; $(x+3)(2x-10)=0$: $x_1=-3$, $x_2=5$</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> Manche Gleichungen lassen sich nicht einfach faktorisieren oder vereinfachen. Dann brauchen wir die <strong>quadratische Ergänzung</strong> oder die daraus abgeleitete <strong>pq-Formel</strong> – das Thema von Kapitel 2.8.</div>
+</section>
+
+<!-- ===================== 2.8 ===================== -->
+<section class="topic" id="k28">
+  <div class="kicker">Kapitel 2.8</div>
+  <h2>Quadratische Ergänzung und pq-Formel</h2>
+  <p class="explain">Die pq-Formel ist das universelle Werkzeug zur Lösung quadratischer Gleichungen. Sie funktioniert immer – auch wenn keine der einfachen Methoden aus Kapitel 2.7 anwendbar ist. Hinter der pq-Formel steckt die "quadratische Ergänzung", ein eleganter algebraischer Trick, den man mindestens einmal selbst durchgeführt haben sollte.</p>
+
+  <p class="explain">Die <strong>quadratische Ergänzung</strong> ist kein Zaubertrick, sondern eine clevere Anwendung der binomischen Formel: $(x + k)^2 = x^2 + 2kx + k^2$. Wenn ich ein $x^2 + px$ sehe, erkenne ich: Der "fehlende" Term ist $k^2 = (p/2)^2$. Ich addiere ihn – und subtrahiere ihn gleichzeitig wieder, damit sich der Gesamtwert nicht ändert. Dann habe ich ein vollständiges Quadrat: $(x + p/2)^2$. Das kann ich wie eine einfache Scheitelpunktform behandeln und durch Wurzelziehen lösen.</p>
+
+  <p class="explain">Die <strong>Diskriminante</strong> $D = (p/2)^2 - q$ ist der entscheidende Wert – er verrät ohne vollständige Rechnung, wie viele Lösungen es gibt. Das ist wie ein Ampelsystem: Grün ($D \gt 0$) = zwei Lösungen, Gelb ($D = 0$) = genau eine, Rot ($D \lt 0$) = keine. Wenn $D$ bekannt ist, muss man nur noch die Formel auswerten.</p>
+
+  <div class="idee"><strong>Analogie – Universalschlüssel:</strong> Die pq-Formel ist wie ein Universalschlüssel, der jedes quadratische Schloss öffnet. Speziellere Schlüssel (Wurzelziehen, Nullprodukt) sind schneller – aber sie passen nur bei bestimmten Schlössern. Hat man Zeitdruck und kein Spezialschlüssel passt, nimmt man den Universalschlüssel. Er ist etwas schwerer zu handhaben, aber zuverlässig.</div>
+
+  <div class="idee"><strong>Grundidee der quadratischen Ergänzung:</strong> Man ergänzt das Quadrat $x^2 + px$ zu einem vollständigen Quadrat $(x + p/2)^2$, indem man $(p/2)^2$ addiert und gleichzeitig subtrahiert – so verändert sich der Wert nicht, aber die Form ist günstig zum Lösen.</div>
+
+  <div class="wissen">
+    <h4>Wissen: Die pq-Formel</h4>
+    <p>Für die normierte quadratische Gleichung $x^2 + px + q = 0$ gilt:</p>
+    $$x_{1,2} = -\frac{p}{2} \pm \sqrt{\left(\frac{p}{2}\right)^2 - q}$$
+    <p>Der Ausdruck unter der Wurzel heißt <strong>Diskriminante</strong>:</p>
+    $$D = \left(\frac{p}{2}\right)^2 - q$$
+    <ul>
+      <li>$D \gt 0$: zwei verschiedene reelle Lösungen</li>
+      <li>$D = 0$: genau eine Lösung (Doppellösung) $x = -\dfrac{p}{2}$</li>
+      <li>$D \lt 0$: keine reellen Lösungen</li>
+    </ul>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Quadratische Ergänzung – Schritt für Schritt</h4>
+    <p class="rule">Ziel: $x^2 + px + q = 0$ in die Form $(x + p/2)^2 = \ldots$ bringen</p>
+    $$x^2 + px + q = 0$$
+    $$x^2 + px \underbrace{+ \left(\frac{p}{2}\right)^2 - \left(\frac{p}{2}\right)^2}_{= 0} + q = 0$$
+    $$\left(x + \frac{p}{2}\right)^2 = \left(\frac{p}{2}\right)^2 - q$$
+    <h4>Normierung (wichtig!)</h4>
+    <p class="rule">Die pq-Formel gilt nur, wenn der Koeffizient vor $x^2$ gleich 1 ist. Falls $ax^2 + bx + c = 0$ mit $a \neq 1$: zuerst durch $a$ dividieren!</p>
+    <p class="rule">Dann: $p = b/a$, $q = c/a$.</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Quadratische Gleichung mit pq-Formel lösen</div>
+    <ol>
+      <li>Gleichung in die Form $ax^2 + bx + c = 0$ bringen (alles auf eine Seite).</li>
+      <li>Falls $a \neq 1$: durch $a$ dividieren → $x^2 + px + q = 0$</li>
+      <li>$p$ und $q$ ablesen.</li>
+      <li>Diskriminante berechnen: $D = (p/2)^2 - q$</li>
+      <li>Falls $D \lt 0$: keine reellen Lösungen.</li>
+      <li>Falls $D \geq 0$: $x_{1,2} = -\dfrac{p}{2} \pm \sqrt{D}$</li>
+      <li>Probe durch Einsetzen.</li>
+    </ol>
+  </div>
+
+  <div class="merke"><strong>Merke:</strong> Das häufigste Fehler sind (1) vergessen, durch $a$ zu dividieren; (2) falsches Vorzeichen bei $p/2$ (Formel hat $-p/2$!); (3) $D \lt 0$ übersehen und trotzdem eine Wurzel zu ziehen. Immer erst $D$ berechnen!</div>
+
+  <div class="beispiel"><strong>Musterbeispiel – Quadratische Ergänzung vollständig:</strong> Löse $x^2 + 6x - 7 = 0$ durch quadratische Ergänzung (nicht durch pq-Formel).<br><br>
+  <strong>Schritt 1 – Konstante auf die rechte Seite:</strong><br>
+  $x^2 + 6x = 7$<br><br>
+  <strong>Schritt 2 – Quadratische Ergänzung:</strong> Welcher Term fehlt, damit links ein vollständiges Quadrat steht?<br>
+  $(x + 3)^2 = x^2 + 6x + 9$. Es fehlt also $+9$. Wir addieren auf beiden Seiten:<br>
+  $x^2 + 6x + 9 = 7 + 9 = 16$<br><br>
+  <strong>Schritt 3 – Als Quadrat schreiben:</strong><br>
+  $(x + 3)^2 = 16$<br><br>
+  <strong>Schritt 4 – Wurzel ziehen (mit ±!):</strong><br>
+  $x + 3 = \pm 4$<br>
+  $x_1 = -3 + 4 = 1$, $\quad x_2 = -3 - 4 = -7$<br><br>
+  <strong>Zusammenhang mit pq-Formel:</strong> $p=6$, $q=-7$: $x_{1,2} = -3 \pm \sqrt{9+7} = -3 \pm 4$ → selbe Antwort! Die pq-Formel ist die "abgekürzte" quadratische Ergänzung.</div>
+
+  <div class="task">
+    <span class="tnum">A 15</span><span class="ttitle">pq-Formel anwenden</span>
+    <p class="q">Löse: $x^2 - 6x + 5 = 0$</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Die Gleichung ist bereits normiert ($a=1$). Lies $p$ und $q$ ab: $p = -6$, $q = 5$. Setze in die pq-Formel ein: $x_{1,2} = -\frac{p}{2} \pm \sqrt{(p/2)^2 - q}$.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Parameter ablesen.</span></p>
+      <p class="step-work">$p = -6$, $q = 5$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Diskriminante berechnen.</span></p>
+      <p class="step-work">$D = \left(\frac{-6}{2}\right)^2 - 5 = (-3)^2 - 5 = 9 - 5 = 4$</p>
+      <p class="note">$D = 4 \gt 0$ → zwei Lösungen.</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Lösungen berechnen.</span></p>
+      <p class="step-work">$x_{1,2} = -\frac{-6}{2} \pm \sqrt{4} = 3 \pm 2$</p>
+      <p class="step-work">$x_1 = 3 + 2 = 5$, $\quad x_2 = 3 - 2 = 1$</p>
+      <p class="step-row"><span class="step-label">4</span><span class="step-title">Probe.</span></p>
+      <p class="step-work">$f(5) = 25 - 30 + 5 = 0$ ✓ &nbsp; $f(1) = 1 - 6 + 5 = 0$ ✓</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$x_1 = 5$, $x_2 = 1$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 16</span><span class="ttitle">Normierung notwendig</span>
+    <p class="q">Löse: $2x^2 + 8x - 10 = 0$</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Zuerst durch 2 dividieren, um die Gleichung zu normieren. Dann pq-Formel anwenden.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Normieren: durch 2 dividieren.</span></p>
+      <p class="step-work">$x^2 + 4x - 5 = 0$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Parameter ablesen.</span></p>
+      <p class="step-work">$p = 4$, $q = -5$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Diskriminante.</span></p>
+      <p class="step-work">$D = \left(\frac{4}{2}\right)^2 - (-5) = 4 + 5 = 9$</p>
+      <p class="step-row"><span class="step-label">4</span><span class="step-title">Lösungen.</span></p>
+      <p class="step-work">$x_{1,2} = -2 \pm \sqrt{9} = -2 \pm 3$</p>
+      <p class="step-work">$x_1 = -2 + 3 = 1$, $\quad x_2 = -2 - 3 = -5$</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$x_1 = 1$, $x_2 = -5$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 17</span><span class="ttitle">Diskriminante und Fallunterscheidung</span>
+    <p class="q">Untersuche ohne vollständige Berechnung, wie viele Lösungen die Gleichung $x^2 + 4x + 7 = 0$ hat. Begründe anhand der Diskriminante.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Berechne nur $D = (p/2)^2 - q$ und schau auf das Vorzeichen. Du brauchst keine vollständige Lösung zu berechnen.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Parameter ablesen.</span></p>
+      <p class="step-work">$p = 4$, $q = 7$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Diskriminante.</span></p>
+      <p class="step-work">$D = \left(\frac{4}{2}\right)^2 - 7 = 4 - 7 = -3$</p>
+      <p class="note">$D = -3 \lt 0$: keine reellen Lösungen.</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Schlussfolgerung.</span></p>
+      <p class="step-work">Die Parabel $f(x) = x^2 + 4x + 7$ hat keinen Schnittpunkt mit der x-Achse. Sie liegt komplett oberhalb der x-Achse.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$D = -3 \lt 0$ → die Gleichung hat keine reellen Lösungen.</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> In Kapitel 2.9 wenden wir das Lösen quadratischer Gleichungen auf Schnittpunktprobleme an: Wo schneiden sich zwei Parabeln, oder eine Parabel und eine Gerade? Das führt immer auf eine quadratische Gleichung.</div>
+</section>
+
+<!-- ===================== 2.9 ===================== -->
+<section class="topic" id="k29">
+  <div class="kicker">Kapitel 2.9</div>
+  <h2>Grafisches Lösen durch Schnittpunktbestimmung</h2>
+  <p class="explain">Viele reale Probleme laufen darauf hinaus, Schnittpunkte von Graphen zu finden: Wann sind zwei Größen gleich? Schnittpunkte lassen sich sowohl grafisch (ablesen) als auch rechnerisch (Gleichung aufstellen) bestimmen. Rechnerisch ist dabei genauer – aber das grafische Verfahren hilft, die Lösung besser zu verstehen.</p>
+
+  <p class="explain">Warum führt das Gleichsetzen zu den Schnittpunkten? An einem Schnittpunkt haben beide Graphen dieselbe x- und dieselbe y-Koordinate. Wenn $f(x_0) = g(x_0)$, dann haben beide Funktionen am selben x-Wert $x_0$ denselben y-Wert – das ist per Definition ein Schnittpunkt. Das Gleichsetzen findet also genau diese x-Werte. Anschließend berechnet man die y-Koordinate, indem man einen der x-Werte in eine der beiden Funktionen einsetzt (am besten in die einfachere).</p>
+
+  <p class="explain">Schnittpunkte zwischen Parabel und Gerade führen immer auf eine <em>quadratische</em> Gleichung, weil man $ax^2 + bx + c = mx + n$ umschreibt und auf eine Seite bringt. Schnittpunkte zweier Parabeln können auf eine quadratische oder sogar einfachere Gleichung führen, falls sich die $x^2$-Terme wegheben. Die Diskriminante verrät dann direkt, ob und wie viele Schnittpunkte es gibt.</p>
+
+  <div class="idee"><strong>Analogie – Wegkreuzung:</strong> Zwei Autos fahren verschiedene Routen (Parabel und Gerade). Ein Schnittpunkt ist dort, wo ihre Routen dieselbe Position auf der Karte haben. Das Gleichsetzen findet genau diese Kreuzungen: Wann sind die Routen gleich? In der Mathematik: Wann haben $f$ und $g$ denselben y-Wert? Null, ein oder zwei Kreuzungen sind möglich – je nachdem wie die Diskriminante ausfällt.</div>
+
+  <div class="idee"><strong>Grundidee:</strong> Zwei Graphen schneiden sich an den Stellen, wo ihre Funktionswerte gleich sind: $f(x) = g(x)$. Diese Gleichung nach $x$ auflösen liefert die x-Koordinaten der Schnittpunkte. Die y-Koordinaten erhält man durch Einsetzen.</div>
+
+  <div class="wissen">
+    <h4>Wissen: Schnittpunkte bestimmen</h4>
+    <p><strong>Schnittpunkte zweier Parabeln</strong> $f$ und $g$:</p>
+    $$f(x) = g(x) \;\Rightarrow\; \text{nach } x \text{ auflösen (quadratische Gleichung!)}$$
+    <p><strong>Schnittpunkte Parabel mit Gerade</strong> $h(x) = mx + n$:</p>
+    $$f(x) = mx + n \;\Rightarrow\; ax^2 + bx + c = mx + n \;\Rightarrow\; ax^2 + (b-m)x + (c-n) = 0$$
+    <p><strong>y-Koordinate:</strong> Gefundene x-Werte in eine der beiden Funktionen einsetzen (z.B. in die einfachere).</p>
+    <p><strong>Grafisch:</strong> Schnittpunkte im Koordinatensystem ablesen – sinnvoll zur Probe und Schätzung.</p>
+  </div>
+
+  <div class="cheatsheet">
+    <h4>Überblick: Schnittpunktprobleme</h4>
+    <p class="rule"><span class="name">Parabel ∩ x-Achse:</span> $f(x) = 0$ lösen → Nullstellen</p>
+    <p class="rule"><span class="name">Parabel ∩ Gerade:</span> $f(x) = mx+n$ → quadratische Gleichung, pq-Formel</p>
+    <p class="rule"><span class="name">Parabel ∩ Parabel:</span> $f(x) = g(x)$ → oft vereinfacht sich zu quadratischer Gleichung</p>
+    <p class="rule"><span class="name">Berührung (keine Kreuzung):</span> $D = 0$ → ein gemeinsamer Punkt (Tangente)</p>
+  </div>
+
+  <div class="procedure">
+    <div class="title">Vorgehen: Schnittpunkte zweier Funktionen berechnen</div>
+    <ol>
+      <li>Beide Funktionen gleichsetzen: $f(x) = g(x)$</li>
+      <li>Alles auf eine Seite bringen: $f(x) - g(x) = 0$</li>
+      <li>Vereinfachen und ggf. normieren.</li>
+      <li>Quadratische Gleichung lösen (pq-Formel oder andere Methode).</li>
+      <li>x-Werte in eine Funktion einsetzen → y-Koordinaten der Schnittpunkte.</li>
+      <li>Schnittpunkte als Koordinaten $S_i(x_i \mid y_i)$ angeben.</li>
+      <li>Probe: x-Wert in die andere Funktion einsetzen – gleiche y-Koordinate?</li>
+    </ol>
+  </div>
+
+  <div class="beispiel"><strong>Musterbeispiel:</strong> Bestimme, ob und wie oft die Parabel $f(x) = x^2 - 4x + 3$ die Gerade $g(x) = x - 1$ schneidet. Falls ja: berechne die Schnittpunkte vollständig.<br><br>
+  <strong>Schritt 1 – Gleichsetzen:</strong><br>
+  $x^2 - 4x + 3 = x - 1$<br><br>
+  <strong>Schritt 2 – Alles auf eine Seite:</strong><br>
+  $x^2 - 5x + 4 = 0$<br><br>
+  <strong>Schritt 3 – Diskriminante prüfen:</strong><br>
+  $p = -5$, $q = 4$: $\;D = (-2{,}5)^2 - 4 = 6{,}25 - 4 = 2{,}25 \gt 0$ → zwei Schnittpunkte.<br><br>
+  <strong>Schritt 4 – pq-Formel:</strong><br>
+  $x_{1,2} = 2{,}5 \pm \sqrt{2{,}25} = 2{,}5 \pm 1{,}5$<br>
+  $x_1 = 4$, $\;x_2 = 1$<br><br>
+  <strong>Schritt 5 – y-Koordinaten (in $g$ einsetzen):</strong><br>
+  $g(4) = 3$ → $S_1(4 \mid 3)$ &nbsp;|&nbsp; $g(1) = 0$ → $S_2(1 \mid 0)$<br><br>
+  <strong>Probe in $f$:</strong> $f(4) = 16 - 16 + 3 = 3$ ✓ &nbsp; $f(1) = 1 - 4 + 3 = 0$ ✓</div>
+
+  <div class="task">
+    <span class="tnum">A 18</span><span class="ttitle">Parabel schneidet Gerade</span>
+    <p class="q">Bestimme die Schnittpunkte der Parabel $f(x) = x^2 - 4$ mit der Geraden $g(x) = 2x - 1$.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Setze $f(x) = g(x)$: $x^2 - 4 = 2x - 1$. Bringe alle Terme auf eine Seite und löse die resultierende quadratische Gleichung.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichsetzen.</span></p>
+      <p class="step-work">$x^2 - 4 = 2x - 1$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Alles auf eine Seite.</span></p>
+      <p class="step-work">$x^2 - 2x - 3 = 0$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">pq-Formel anwenden.</span></p>
+      <p class="step-work">$p = -2$, $q = -3$</p>
+      <p class="step-work">$D = (-1)^2 - (-3) = 1 + 3 = 4$</p>
+      <p class="step-work">$x_{1,2} = 1 \pm 2$</p>
+      <p class="step-work">$x_1 = 3$, $\quad x_2 = -1$</p>
+      <p class="step-row"><span class="step-label">4</span><span class="step-title">y-Koordinaten berechnen (in $g$ einsetzen).</span></p>
+      <p class="step-work">$g(3) = 2 \cdot 3 - 1 = 5$ &nbsp; → &nbsp; $S_1(3 \mid 5)$</p>
+      <p class="step-work">$g(-1) = 2 \cdot (-1) - 1 = -3$ &nbsp; → &nbsp; $S_2(-1 \mid -3)$</p>
+      <p class="step-row"><span class="step-label">5</span><span class="step-title">Probe in $f$.</span></p>
+      <p class="step-work">$f(3) = 9 - 4 = 5$ ✓ &nbsp; $f(-1) = 1 - 4 = -3$ ✓</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$S_1(3 \mid 5)$ und $S_2(-1 \mid -3)$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 19</span><span class="ttitle">Zwei Parabeln</span>
+    <p class="q">Bestimme die Schnittpunkte von $f(x) = x^2 - 2x$ und $g(x) = -x^2 + 6$.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Gleichsetzen: $x^2 - 2x = -x^2 + 6$. Auf eine Seite bringen, normieren, pq-Formel.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichsetzen und vereinfachen.</span></p>
+      <p class="step-work">$x^2 - 2x = -x^2 + 6$</p>
+      <p class="step-work">$2x^2 - 2x - 6 = 0$</p>
+      <p class="step-work">$x^2 - x - 3 = 0$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">pq-Formel.</span></p>
+      <p class="step-work">$p = -1$, $q = -3$</p>
+      <p class="step-work">$D = \left(\frac{1}{2}\right)^2 + 3 = \frac{1}{4} + 3 = \frac{13}{4}$</p>
+      <p class="step-work">$x_{1,2} = \frac{1}{2} \pm \frac{\sqrt{13}}{2} = \frac{1 \pm \sqrt{13}}{2}$</p>
+      <p class="step-work">$x_1 = \frac{1+\sqrt{13}}{2} \approx 2{,}30$, $\quad x_2 = \frac{1-\sqrt{13}}{2} \approx -1{,}30$</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">y-Koordinaten (in $g$ einsetzen).</span></p>
+      <p class="step-work">$g(x_1) = -(x_1)^2 + 6 \approx -(2{,}30)^2 + 6 \approx -5{,}29 + 6 \approx 0{,}71$</p>
+      <p class="step-work">$g(x_2) \approx -(-1{,}30)^2 + 6 \approx -1{,}69 + 6 \approx 4{,}31$</p>
+      <p class="note">Exakte Werte sind hier unhandlich; gerundete Angabe ist zulässig, wenn keine exakten Werte verlangt werden.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$x_1 = \dfrac{1+\sqrt{13}}{2} \approx 2{,}30$, $\quad x_2 = \dfrac{1-\sqrt{13}}{2} \approx -1{,}30$</p>
+      <p>$S_1 \approx (2{,}30 \mid 0{,}71)$, $\quad S_2 \approx (-1{,}30 \mid 4{,}31)$</p>
+    </div></details>
+  </div>
+
+  <div class="task">
+    <span class="tnum">A 20</span><span class="ttitle">Berühren oder Schneiden?</span>
+    <p class="q">Untersuche, ob die Parabel $f(x) = x^2 + 2x + 2$ die Gerade $g(x) = 4x - 2$ schneidet, berührt oder keinen gemeinsamen Punkt hat.</p>
+    <details class="hint"><summary>Tipp</summary><div>
+      <p>Gleichsetzen und Diskriminante $D$ der entstehenden quadratischen Gleichung berechnen. $D \gt 0$: schneidet, $D = 0$: berührt, $D \lt 0$: kein gemeinsamer Punkt.</p>
+    </div></details>
+    <details class="steps"><summary>Lösungsweg</summary><div>
+      <p class="step-row"><span class="step-label">1</span><span class="step-title">Gleichsetzen.</span></p>
+      <p class="step-work">$x^2 + 2x + 2 = 4x - 2$</p>
+      <p class="step-work">$x^2 - 2x + 4 = 0$</p>
+      <p class="step-row"><span class="step-label">2</span><span class="step-title">Diskriminante berechnen.</span></p>
+      <p class="step-work">$p = -2$, $q = 4$</p>
+      <p class="step-work">$D = (-1)^2 - 4 = 1 - 4 = -3$</p>
+      <p class="note">$D = -3 \lt 0$: keine reellen Lösungen.</p>
+      <p class="step-row"><span class="step-label">3</span><span class="step-title">Schlussfolgerung.</span></p>
+      <p class="step-work">Die Parabel und die Gerade haben keinen gemeinsamen Punkt. Die Gerade liegt vollständig unterhalb (oder oberhalb) der Parabel.</p>
+    </div></details>
+    <details class="result"><summary>Ergebnis</summary><div>
+      <p>$D = -3 \lt 0$ → Parabel und Gerade haben keinen gemeinsamen Punkt.</p>
+    </div></details>
+  </div>
+
+  <div class="hinweis"><strong>Ausblick:</strong> Mit dem Wissen aus Kapitel 2.1–2.9 bist du bereit für <strong>Kapitel 2.10 Optimierungsprobleme</strong>: Dort sucht man das Minimum oder Maximum einer quadratischen Funktion in realen Anwendungen – z.B. minimaler Materialverbrauch oder maximaler Gewinn. Der Scheitelpunkt der Parabel ist dann die entscheidende Größe.</div>
+</section>
+
+<!-- ===================== LAST-MINUTE-TIPPS ===================== -->
+<section class="topic">
+  <div class="kicker">Prüfungsvorbereitung</div>
+  <h2>Last-Minute-Tipps</h2>
+  <div class="tip-box">
+    <h3>Die wichtigsten Formeln auf einen Blick</h3>
+    <p><strong>Scheitelpunktform:</strong> $f(x) = a(x-d)^2 + e$ &nbsp;→&nbsp; Scheitel $S(d \mid e)$ direkt ablesen</p>
+    <p><strong>pq-Formel:</strong> $x_{1,2} = -\dfrac{p}{2} \pm \sqrt{\left(\dfrac{p}{2}\right)^2 - q}$ &nbsp; (erst normieren: $a=1$!)</p>
+    <p><strong>Diskriminante:</strong> $D = (p/2)^2 - q$ &nbsp;→&nbsp; $D\gt 0$: 2 Lsg., $D=0$: 1 Lsg., $D\lt 0$: keine</p>
+    <p><strong>Schnittpunkte:</strong> $f(x) = g(x)$ gleichsetzen → quadratische Gleichung lösen</p>
+  </div>
+  <div class="tip-box">
+    <h3>Häufige Fehler vermeiden</h3>
+    <p>① <strong>Vorzeichen bei $d$:</strong> $(x-3)^2$ hat Scheitel bei $x=+3$, nicht $-3$. Immer: Klammerinhalt $=0$ setzen.</p>
+    <p>② <strong>pq-Formel ohne Normierung:</strong> Immer zuerst durch $a$ dividieren, bevor man $p$ und $q$ abliest.</p>
+    <p>③ <strong>Nullproduktsatz:</strong> Nie durch $x$ dividieren – das verliert Lösungen! Stattdessen Nullproduktsatz anwenden.</p>
+    <p>④ <strong>Wurzel ohne ±:</strong> $x^2 = 9$ hat die Lösungen $x = +3$ UND $x = -3$. Das ± nie vergessen.</p>
+    <p>⑤ <strong>Probe machen:</strong> Immer die Lösungen in die ursprüngliche Gleichung einsetzen – das kostet 30 Sekunden und rettet Punkte.</p>
+  </div>
+  <div class="tip-box">
+    <h3>Strategie in der Klausur</h3>
+    <p>Zuerst schauen: Kann ich die Gleichung <em>ohne</em> pq-Formel lösen (Wurzelziehen, Nullproduktsatz)? Das spart Zeit. Erst wenn das nicht klappt: pq-Formel. Immer erst $D$ berechnen und kommentieren – auch wenn $D \lt 0$, bringt das Teilpunkte.</p>
+  </div>
+</section>
+
+<footer class="doc">
+  Lernpfad Quadratische Funktionen · Kapitel 2.1–2.9 · Erstellt mit Claude (Anthropic) · April 2026
+</footer>
+
+</div>
+</body>
+</html>
